@@ -3,7 +3,7 @@
 
 #include "../Models/Authorization/User.h"
 
-int TryGetUserByLogin(User* out_user, char login[]);
+int TryGetUserByLogin(User* out_user, std::string login);
 int AddUser(User* user);
 
 #endif

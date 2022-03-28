@@ -151,9 +151,9 @@
     <ClInclude Include="Repositories\UserRepository.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DBManagment\imp\ConnectionKeeper.c" />
+    <ClCompile Include="DBManagment\imp\ConnectionKeeper.cpp" />
     <ClCompile Include="DBManagment\imp\sqlite3.c" />
-    <ClCompile Include="main.c" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Repositories\Implementation\UserRepository.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
