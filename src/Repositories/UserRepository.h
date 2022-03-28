@@ -2,8 +2,9 @@
 #define _USER_REPO_DREAM_TEAM_GUARD
 
 #include "../Models/Authorization/User.h"
+#include <vector>
 
-int TryGetUserByLogin(User* out_user, char login[]);
+std::vector<User> TryGetUserByLogin(std::string login);
 int AddUser(User* user);
 
 #endif

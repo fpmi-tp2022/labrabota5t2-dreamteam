@@ -1,19 +1,20 @@
 #include "../includes/ConnectionKeeper.h"
 #include "../includes/sqlite3.h"
-
+#include <stdio.h>
 sqlite3* db;
 
 int OpenConnection() 
 {
-	return -1;
+	int rc = sqlite3_open("../hippodrome.db", &db);
+	return rc;
 }
 
 sqlite3* GetConnection() 
 {
-	return -1;
+	return db;
 }
 
 int CloseConnection() 
 {
-	return -1;
+	return sqlite3_close(db);;
 }

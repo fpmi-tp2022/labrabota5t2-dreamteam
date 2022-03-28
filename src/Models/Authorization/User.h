@@ -3,12 +3,13 @@
 
 #include "Role.h"
 #include "../../Constants/Constants.h"
+#include <string>
 
 struct User 
 {
 	int Id;
-	char Email[EMAIL_LENGTH];
-	char PasswordSigned[PASSWORD_SIGNED_LENGTH];
+	std::string Email;
+	std::string PasswordSigned;
 	Role Role;
 };
 
