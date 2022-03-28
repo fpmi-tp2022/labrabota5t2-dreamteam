@@ -3,8 +3,6 @@
 
 #include "sqlite3.h"
 
-sqlite3* db;
-
 int OpenConnection();
 sqlite3* GetConnection();
 int CloseConnection();

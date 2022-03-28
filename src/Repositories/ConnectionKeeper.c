@@ -1,6 +1,8 @@
 #include "ConnectionKeeper.h"
 #include "sqlite3.h"
 
+sqlite3* db;
+
 int OpenConnection() 
 {
 	return -1;
