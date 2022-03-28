@@ -140,12 +140,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Constants\Constants.h" />
+    <ClInclude Include="DBManagment\includes\ConnectionKeeper.h" />
+    <ClInclude Include="DBManagment\includes\sqlite3.h" />
     <ClInclude Include="Models\Authorization\Role.h" />
     <ClInclude Include="Models\Authorization\User.h" />
     <ClInclude Include="Models\Horse.h" />
     <ClInclude Include="Models\Jockey.h" />
     <ClInclude Include="Models\Owner.h" />
     <ClInclude Include="Models\Race.h" />
+    <ClInclude Include="Repositories\UserRepository.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DBManagment\imp\ConnectionKeeper.c" />
+    <ClCompile Include="DBManagment\imp\sqlite3.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="Repositories\Implementation\UserRepository.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

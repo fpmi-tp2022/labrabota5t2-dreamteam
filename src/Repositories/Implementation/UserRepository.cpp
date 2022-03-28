@@ -1,5 +1,5 @@
 #include "../UserRepository.h"
-#include "../sqlite3.h"
+#include "../../DBManagment/includes/sqlite3.h"
 
 static int callback(void* NotUsed, int argc, char** argv, char** azColName) {
 	int i;
