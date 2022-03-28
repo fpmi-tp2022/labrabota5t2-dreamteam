@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -114,7 +114,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Authorization\security_manager.h" />
+    <ClInclude Include="Authorization\sha256.h" />
     <ClInclude Include="Constants\Constants.h" />
     <ClInclude Include="DBManagment\includes\ConnectionKeeper.h" />
     <ClInclude Include="DBManagment\includes\sqlite3.h" />
@@ -151,6 +153,8 @@
     <ClInclude Include="Repositories\UserRepository.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Authorization\imp\security_manager.cpp" />
+    <ClCompile Include="Authorization\imp\sha256.cpp" />
     <ClCompile Include="DBManagment\imp\ConnectionKeeper.cpp" />
     <ClCompile Include="DBManagment\imp\sqlite3.c" />
     <ClCompile Include="main.cpp" />
