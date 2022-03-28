@@ -1,5 +1,5 @@
-#include "ConnectionKeeper.h"
-#include "sqlite3.h"
+#include "../includes/ConnectionKeeper.h"
+#include "../includes/sqlite3.h"
 
 sqlite3* db;
 
