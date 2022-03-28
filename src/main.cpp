@@ -8,9 +8,16 @@ int main() {
 
 	int rc = OpenConnection();
 
+	//get user by login sample
 	User user;
+	std::vector<User> vector = TryGetUserByLogin("Elza");
 
-	TryGetUserByLogin(&user, "Elza");
+	//add new user
+	User user2;
+	user2.PasswordSigned = "456";
+	user2.Email = "Pavel";
+	user2.Role = (Role)2;
+	AddUser(&user2);
 
 	int rs = CloseConnection();
 	return 0;
