@@ -4,19 +4,10 @@
 #include "Jockey.h"
 #include "Horse.h"
 
-struct Race 
+struct Race
 {
 	int Id;
-	char* Date;
-	int Result;
-
-	//fk Jockey
-	int JockeyId;
-	Jockey* Jockey = NULL;
-
-	//fk Horse
-	int HorseId;
-	Horse* Horse = NULL;
+	std::string Date;
 };
 
 #endif

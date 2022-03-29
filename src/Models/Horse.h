@@ -9,7 +9,7 @@
 struct Horse 
 {
 	int Id;
-	char Nickname[NAME_LENGTH];
+	std::string Nickname;
 	int Age;
 	double Experience;
 	double Price;

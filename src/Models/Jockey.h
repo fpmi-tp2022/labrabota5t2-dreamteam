@@ -9,10 +9,10 @@
 struct Jockey 
 {
 	int Id;
-	char Name[NAME_LENGTH];
+	std::string Name;
 	double Experience;
 	int YearOfBirth;
-	char Adress[ADRESS_LENGTH];
+	std::string Adress;
 
 	//fk User
 	int IdentityId;
