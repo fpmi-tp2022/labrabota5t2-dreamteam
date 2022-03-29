@@ -149,7 +149,13 @@
     <ClInclude Include="Models\Horse.h" />
     <ClInclude Include="Models\Jockey.h" />
     <ClInclude Include="Models\Owner.h" />
+    <ClInclude Include="Models\Prize.h" />
     <ClInclude Include="Models\Race.h" />
+    <ClInclude Include="Models\RaceRecord.h" />
+    <ClInclude Include="Repositories\HorseRepository.h" />
+    <ClInclude Include="Repositories\JockeyRepository.h" />
+    <ClInclude Include="Repositories\PrizeRepository.h" />
+    <ClInclude Include="Repositories\RaceRecordRepository.h" />
     <ClInclude Include="Repositories\UserRepository.h" />
   </ItemGroup>
   <ItemGroup>
@@ -158,7 +164,13 @@
     <ClCompile Include="DBManagment\imp\ConnectionKeeper.cpp" />
     <ClCompile Include="DBManagment\imp\sqlite3.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Repositories\Implementation\HorseRepository.cpp" />
+    <ClCompile Include="Repositories\Implementation\JockeyRepository.cpp" />
+    <ClCompile Include="Repositories\Implementation\OwnerRepository.cpp" />
+    <ClCompile Include="Repositories\Implementation\PrizeRepository.cpp" />
+    <ClCompile Include="Repositories\Implementation\RaceRecordRepository.cpp" />
     <ClCompile Include="Repositories\Implementation\UserRepository.cpp" />
+    <ClCompile Include="Repositories\OwnerRepository.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
