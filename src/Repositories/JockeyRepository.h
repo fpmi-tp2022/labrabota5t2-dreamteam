@@ -2,7 +2,15 @@
 #define _JOCKEY_REPO_DREAM_TEAM_GUARD
 
 #include "../Models/Jockey.h"
+#include <vector>
 
-std::pair<Jockey, int> GetMostExperiencedJockey();
+struct JockeyExperince 
+{
+	int JockeyId;
+	int RaceAmount;
+};
+
+//TODO
+std::vector<JockeyExperince> GetJockeyExperience();
 
 #endif
