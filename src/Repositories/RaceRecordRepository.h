@@ -8,8 +8,10 @@ std::vector<RaceRecord> GetBestHorseRecords();
 
 std::vector<RaceRecord> GetJockeyRecords();
 
-std::vector<RaceRecord> GetOwnerRecords();
+//std::vector<RaceRecord> GetOwnerRecords(int OwnerId);
 
-std::vector<RaceRecord> GetAllRecordsInPeriod(std::string from, std::string to);
+std::vector<RaceRecord> GetByHorseId(int horseId);
+
+std::vector<RaceRecord> GetByPeriod(std::string from, std::string to);
 
 #endif
