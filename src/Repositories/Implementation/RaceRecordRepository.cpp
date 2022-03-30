@@ -2,32 +2,11 @@
 #include "../../DBManagment/includes/sqlite3.h"
 #include "../../DBManagment/includes/ConnectionKeeper.h"
 
-std::vector<RaceRecord> GetBestHorseRecords() 
-{
-	std::vector<RaceRecord> records;
-
-	return records;
-}
-
-std::vector<RaceRecord> GetJockeyRecords()
-{
-	std::vector<RaceRecord> records;
-
-	return records;
-}
-
-std::vector<RaceRecord> GetOwnerRecords()
-{
-	std::vector<RaceRecord> records;
-
-	return records;
-}
-
-static int callback_GetAllRecords(void* out_param, int argc, char** argv, char** azColName)
+static int callback_RaceRecords(void* out_param, int argc, char** argv, char** azColName)
 {
 	std::vector<RaceRecord>* out_vector = (std::vector<RaceRecord>*)out_param;
 
-	for (int i = 0; i < argc; i += 19)
+	for (int i = 0; i < argc; i += 21)
 	{
 		RaceRecord rr;
 		if (strcmp(azColName[i], "Id") == 0)
@@ -135,7 +114,68 @@ static int callback_GetAllRecords(void* out_param, int argc, char** argv, char**
 	return 0;
 }
 
-std::vector<RaceRecord> GetAllRecordsInPeriod(std::string from, std::string to)
+std::vector<RaceRecord> GetBestHorseRecords() 
+{
+	std::vector<RaceRecord> records;
+
+	return records;
+}
+
+std::vector<RaceRecord> GetJockeyRecords()
+{
+	std::vector<RaceRecord> records;
+
+	return records;
+}
+
+std::vector<RaceRecord> GetByHorseId(int horseId)
+{
+	std::vector<RaceRecord> records;
+
+	std::string query_string = "SELECT \
+									rr.Id, \
+									rr.Result, \
+									rr.RaceId, \
+									rr.JockeyId, \
+									rr.HorseId, \
+									r.Date, \
+									j.Name, \
+									j.Experience, \
+									j.YearOfBirth, \
+									j.Address, \
+									j.IdentityId, \
+									j.Id, \
+									h.Nickname, \
+									h.Age, \
+									h.Experience, \
+									h.Price, \
+									o.Id, \
+									o.Name, \
+									o.YearOfBirth, \
+									o.Address, \
+									o.IdentityId\
+								FROM \
+								RaceRecord AS rr \
+									JOIN Race AS r ON rr.RaceId = r.Id \
+									JOIN Horse AS h ON rr.HorseId = h.Id \
+									JOIN Jockey AS j ON rr.JockeyId = j.Id \
+									JOIN Owner AS o ON h.OwnerId = o.Id \
+								WHERE h.Id = ";
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	std::string query_string_appended = query_string.append(std::to_string(horseId));
+
+	int rc = sqlite3_exec(db, query_string_appended.c_str(), callback_RaceRecords, &records, &zErrMsg);
+
+	return records;
+}
+
+
+
+std::vector<RaceRecord> GetByPeriod(std::string from, std::string to)
 {
 	std::vector<RaceRecord> records;
 
@@ -175,7 +215,7 @@ std::vector<RaceRecord> GetAllRecordsInPeriod(std::string from, std::string to)
 
 	std::string query_string_appended = query_string.append(from).append("' AND r.Date < '").append(to).append("'");
 
-	int rc = sqlite3_exec(db, query_string_appended.c_str(), callback_GetAllRecords, &records, &zErrMsg);
+	int rc = sqlite3_exec(db, query_string_appended.c_str(), callback_RaceRecords, &records, &zErrMsg);
 
 	return records;
 }
