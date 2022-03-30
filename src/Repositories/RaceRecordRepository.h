@@ -4,11 +4,7 @@
 #include "../Models/RaceRecord.h"
 #include <vector>
 
-std::vector<RaceRecord> GetBestHorseRecords();
-
-std::vector<RaceRecord> GetJockeyRecords();
-
-//std::vector<RaceRecord> GetOwnerRecords(int OwnerId);
+std::vector<RaceRecord> GetJockeyRecords(int jockeyId);
 
 std::vector<RaceRecord> GetByHorseId(int horseId);
 
