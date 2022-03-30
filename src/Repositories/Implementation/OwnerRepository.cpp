@@ -89,3 +89,17 @@ std::vector<Horse> GetHorsesByOwnerId(int OwnerId)
 
 	return horses;
 }
+
+Horce GetBestHorce(int OwnerId) {
+	auto horces = GetHorsesByOwnerId(OwnerId);
+	Horse answer = horces[0];
+
+	for(auto h : horces)
+	{
+		if (h.Experience > answer.Experience) {
+			answer = h;
+		}
+	}
+
+	return answer;
+}

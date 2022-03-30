@@ -6,4 +6,6 @@
 
 std::vector<Horse> GetHorsesByOwnerId(int OwnerId);
 
+Horse GetBestHorce(int OwnerId);
+
 #endif
