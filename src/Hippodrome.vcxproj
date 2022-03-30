@@ -157,6 +157,7 @@
     <ClInclude Include="Repositories\PrizeRepository.h" />
     <ClInclude Include="Repositories\RaceRecordRepository.h" />
     <ClInclude Include="Repositories\UserRepository.h" />
+    <ClInclude Include="UserInteraction\UIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Authorization\imp\security_manager.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Repositories\Implementation\RaceRecordRepository.cpp" />
     <ClCompile Include="Repositories\Implementation\UserRepository.cpp" />
     <ClCompile Include="Repositories\OwnerRepository.h" />
+    <ClCompile Include="UserInteraction\UIManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

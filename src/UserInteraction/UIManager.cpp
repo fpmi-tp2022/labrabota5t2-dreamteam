@@ -5,11 +5,13 @@
 #include "../Repositories/OwnerRepository.h"
 #include "../Repositories/RaceRecordRepository.h"
 #include <iostream>
+#include <vector>
+#include <string>
 #include <typeinfo>
 
 UIManager::UIManager(User user)
 {
-	this.user = user;
+	this->user = user;
 }
 
 UIManager::~UIManager()
@@ -33,9 +35,9 @@ bool UIManager::ShowMenu()
 		switch (choise)
 		{
 		case 1:
-			if(typeid(user).name() == typeid(Jockey).name)
+			if(typeid(user).name() == typeid(Jockey).name())
 				SelectForJockey();
-			else if (typeid(user).name() == typeid(Owner).name) {
+			else if (typeid(user).name() == typeid(Owner).name()) {
 				SelectForOwner();
 			}
 			else {
@@ -78,17 +80,22 @@ void UIManager::SelectForJockey()
 		case 2:
 			PrintInfoAboutAllRaces();
 			break;
-		case 3:
-			auto info = GetJockeyInfo(user.Id);
-			PrintJockeyInfo(info, true);
+		case 3: {
+			auto info1 = GetJockeyInfo(user.Id);
+			PrintJockeyInfo(info1, true);
 			break;
+		}
+			
 		case 4:
-			auto info = GetJockeyRecords(user.Id);
-			for(auto race : info)
+		{
+			auto info2 = GetJockeyRecords(user.Id);
+			for (auto race : info2)
 			{
 				PrintRaceInfo(race);
 			}
 			break;
+		}
+			
 		default:
 			break;
 		}
@@ -118,16 +125,20 @@ void UIManager::SelectForOwner()
 			PrintInfoAboutAllRaces();
 			break;
 		case 3:
-			auto info = GetBestHorce(user.Id);
-			PrintHorseInfo(info);
+		{
+			auto info1 = GetBestHorce(user.Id);
+			PrintHorseInfo(info1);
 			break;
+		}
 		case 4:
-			auto info = GetHorsesByOwnerId(user.Id);
-			for(auto h : info)
+		{
+			auto info2 = GetHorsesByOwnerId(user.Id);
+			for (auto h : info2)
 			{
 				PrintHorseInfo(h);
 			}
 			break;
+		}
 		default:
 			break;
 		}
@@ -165,22 +176,28 @@ void UIManager::PrintInfoAboutBestJockey()
 	auto jockeyInfo = GetJockeyInfo(info.JockeyId);
 
 	PrintJockeyInfo(jockeyInfo, false);
-	std::cout << " ,race amount: " << i.RaceAmount << ";\n";
+	std::cout << " ,race amount: " << info.RaceAmount << ";\n";
 }
 
 void UIManager::PrintInfoAboutAllRaces()
 {
-	auto info = GetAllRaceRecords();
+	std::string begin, end;
+	std::cout << "Enter the beginning of the period:\n";
+	std::cin >> begin;
+	std::cout << "Enter the end of the period:\n";
+	std::cin >> end;
+
+	auto info = GetByPeriod(begin, end);
 	for(auto race : info)
 	{
 		PrintRaceInfo(race);
 	}
 }
 
-void UIManager::PrintHorseInfo(Horse horce)
+void UIManager::PrintHorseInfo(Horse horse)
 {
-	syd::cout << "Horce id: " << horce.Id << " ,nickname: " << horce.Nickname << " ,owner: " << horce.Owner << " ,owner id: " << horce.OwnerId
-		<< ", age:" << horce.Age << ", experience: " << horce.Experience << " ,price: " << horce.Price << ";\n";
+	std::cout << "Horce id: " << horse.Id << " ,nickname: " << horse.Nickname << " ,owner: " << horse.Owner << " ,owner id: " << horse.OwnerId
+		<< ", age:" << horse.Age << ", experience: " << horse.Experience << " ,price: " << horse.Price << ";\n";
 }
 
 void UIManager::PrintJockeyInfo(Jockey jockey, bool nextline)
@@ -193,6 +210,6 @@ void UIManager::PrintJockeyInfo(Jockey jockey, bool nextline)
 
 void UIManager::PrintRaceInfo(RaceRecord race)
 {
-	std::cout << "Race id: " << i.RaceId << ", jockey: " << i.Jockey->Name << ", jockey id: " << i.JockeyId
-		<< " ,horse: " << i.Horse->Nickname << ", horse id: " << i.HorseId << ", result: " << i.Result << ";\n";
+	std::cout << "Race id: " << race.RaceId << ", jockey: " << race.Jockey->Name << ", jockey id: " << race.JockeyId
+		<< " ,horse: " << race.Horse->Nickname << ", horse id: " << race.HorseId << ", result: " << race.Result << ";\n";
 }
