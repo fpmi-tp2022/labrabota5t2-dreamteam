@@ -1,6 +1,11 @@
 #ifndef _UIMANAGER_DREAM_TEAM_GUARD
 #define _UIMANAGER_DREAM_TEAM_GUARD
 
+#include "../Models/Authorization/User.h"
+#include "../Models/RaceRecord.h"
+#include "../Models/Jockey.h"
+#include "../Models/Horse.h"
+
 class UIManager
 {
 public:
