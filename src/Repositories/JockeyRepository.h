@@ -10,12 +10,10 @@ struct JockeyExperince
 	int RaceAmount;
 };
 
-//TODO
 std::vector<JockeyExperince> GetJockeyExperience();
 
 JockeyExperince GetBestJockey();
 
-//TODO select * from ...
 Jockey GetJockeyInfo(int jockeyId);
 
 #endif

@@ -118,7 +118,7 @@ void UIManager::SelectForOwner()
 			PrintInfoAboutAllRaces();
 			break;
 		case 3:
-			auto info = GetBestHorce(user.Id);
+			auto info = GetBestHorse(user.Id);
 			PrintHorseInfo(info);
 			break;
 		case 4:
