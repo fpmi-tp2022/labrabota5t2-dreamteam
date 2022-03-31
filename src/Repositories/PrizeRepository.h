@@ -1,0 +1,4 @@
+#ifndef _PRIZE_REPO_DREAM_TEAM_GUARD
+#define _PRIZE_REPO_DREAM_TEAM_GUARD
+
+#endif

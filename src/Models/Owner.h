@@ -8,9 +8,9 @@
 struct Owner
 {
 	int Id;
-	char Name[NAME_LENGTH];
+	std::string Name;
 	int YearOfBirth;
-	char Adress[ADRESS_LENGTH];
+	std::string Address;
 
 	//fk User
 	int IdentityId;

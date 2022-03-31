@@ -5,6 +5,7 @@
 #include <vector>
 
 std::vector<User> TryGetUserByLogin(std::string login);
+
 int AddUser(User* user);
 
 #endif
