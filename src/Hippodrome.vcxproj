@@ -139,9 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Authorization\auth_controller.h" />
     <ClInclude Include="Authorization\security_manager.h" />
     <ClInclude Include="Authorization\sha256.h" />
-    <ClInclude Include="Constants\Constants.h" />
+    <ClInclude Include="Authorization\user_session.h" />
+    <ClInclude Include="Types\types.h" />
+    <ClInclude Include="Types\result_codes.h" />
     <ClInclude Include="DBManagment\includes\ConnectionKeeper.h" />
     <ClInclude Include="DBManagment\includes\sqlite3.h" />
     <ClInclude Include="Models\Authorization\Role.h" />
@@ -153,6 +156,7 @@
     <ClInclude Include="Repositories\UserRepository.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Authorization\imp\auth_controller.cpp" />
     <ClCompile Include="Authorization\imp\security_manager.cpp" />
     <ClCompile Include="Authorization\imp\sha256.cpp" />
     <ClCompile Include="DBManagment\imp\ConnectionKeeper.cpp" />
