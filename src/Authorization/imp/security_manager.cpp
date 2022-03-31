@@ -5,18 +5,18 @@
 
 std::string GetHash(std::string str);
 
-Result CheckLoginCollision(const std::string& login) {
+bool CheckLoginCollision(const std::string& login) {
 	auto users = TryGetUserByLogin(login);
 	if (users.size() > 0) {
-		return Result::LOGIN_COLLISION;;
+		return true;
 	}
-	return Result::NO_ERROR;
+	return false;
 }
 
 
-Result VerifyCredentials(const std::string& login, const std::string& password) {
+Result VerifyCredentials(const std::string& login, const std::string& password, OUT UserSession* session) {
 	auto users = TryGetUserByLogin(login);
-	if (users.size() != 0) {
+	if (users.size() != 1) {
 		return Result::LOGIN_COLLISION;
 	}
 
@@ -24,19 +24,31 @@ Result VerifyCredentials(const std::string& login, const std::string& password) 
 	if (hash != users[0].PasswordSigned) {
 		return Result::WRONG_PASSWORD;
 	}
-	std::cout << "Hash for " << password << '(' << hash << ')' << std::endl;
+
+	session->Id = users[0].Id;
+	session->role = users[0].Role;
 	return Result::NO_ERROR;
 }
 
-Result RegisterNewUser(const std::string& login, const std::string& password, Role role) {
-	Result result = Result::NO_ERROR;
-	if (FAILED(result = CheckLoginCollision(login))) {
-		return result;
+Result RegisterNewUser(const std::string& login, const std::string& password, Role role, OUT UserSession* session) {
+	if (CheckLoginCollision(login)) {
+		return Result::LOGIN_COLLISION;
 	}
 	auto hash = GetHash(password);
 
 	User user = {0, login, hash, role};
-	return (Result)(0 == AddUser(&user));
+	if (0 != AddUser(&user)) {
+		return Result::DB_ERROR;
+	}
+	// Need to get new user's id
+	auto users = TryGetUserByLogin(login);
+	if (users.size() != 1) {
+		return Result::LOGIN_COLLISION;
+	}
+
+	session->Id = users[0].Id;
+	session->role = users[0].Role;
+	return Result::NO_ERROR;
 }
 
 std::string GetHash(std::string str) {

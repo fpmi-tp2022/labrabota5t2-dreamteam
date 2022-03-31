@@ -2,12 +2,13 @@
 #define _SECURITY_MANAGER_DREAM_TEAM_GUARD
 #include <string>
 #include "../Models/Authorization/Role.h"
-#include "../Types/result_codes.h"
+#include "../Types/types.h"
+#include "user_session.h"
 
-Result CheckLoginCollision(const std::string& login);
+bool CheckLoginCollision(const std::string& login);
 
-Result VerifyCredentials(const std::string& login, const std::string& password);
+Result VerifyCredentials(const std::string& login, const std::string& password, OUT UserSession* session);
 
-Result RegisterNewUser(const std::string& login, const std::string& password, Role role);
+Result RegisterNewUser(const std::string& login, const std::string& password, Role role, OUT UserSession* session);
 
 #endif //_SECURITY_MANAGER_DREAM_TEAM_GUARD
