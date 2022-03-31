@@ -13,4 +13,6 @@ std::vector<HorseResults> GetHorsesWon();
 
 int Add(Horse horse);
 
+int Update(Horse horse);
+
 #endif

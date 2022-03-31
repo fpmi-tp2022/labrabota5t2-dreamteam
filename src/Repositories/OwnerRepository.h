@@ -13,4 +13,7 @@ int Update(Owner owner);
 
 Owner GetOwnerInfo(int ownerId);
 
+//TODO
+Owner GetOwnerByIdentityId(int identityId);
+
 #endif

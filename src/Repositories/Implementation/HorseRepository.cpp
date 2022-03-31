@@ -88,3 +88,37 @@ int Add(Horse horse)
 	int rc = sqlite3_exec(db, appended_query.c_str(), nullptr, 0, &zErrMsg);
 	return rc;
 }
+
+int Update(Horse horse)
+{
+	char* zErrMsg = 0;
+
+	int isPresent = 0;
+
+	std::string query = "SELECT Count(Owner.Id) AS Count FROM Owner WHERE Owner.Id = ";
+
+	sqlite3* db = GetConnection();
+
+	int rc1 = sqlite3_exec(db, query.append(std::to_string(horse.OwnerId)).c_str(), callback_count, &isPresent, &zErrMsg);
+
+	if (isPresent == 0)
+	{
+		return -1;
+	}
+
+	std::string query2 = "UPDATE Horse SET Nickname = '";
+
+	std::string appended_query = query2
+		.append(horse.Nickname)
+		.append("', Age = ")
+		.append(std::to_string(horse.Age))
+		.append(", Price =")
+		.append(std::to_string(horse.Price))
+		.append(", OwnerId = ")
+		.append(std::to_string(horse.OwnerId))
+		.append(" WHERE Id = ")
+		.append(std::to_string(horse.Id));
+
+	int rc = sqlite3_exec(db, appended_query.c_str(), nullptr, 0, &zErrMsg);
+	return rc;
+}

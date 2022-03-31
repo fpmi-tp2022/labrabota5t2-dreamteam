@@ -5,6 +5,11 @@
 static int callback_Jockey(void* out_param, int argc, char** argv, char** azColName)
 {
 	Jockey* out_jockey = (Jockey*)out_param;
+	if (argc == 0) 
+	{
+		out_jockey = nullptr;
+		return 0;
+	}
 
 	for (int i = 0; i < argc; i += 6)
 	{
@@ -129,4 +134,18 @@ int Update(Jockey jockey)
 	int rc = sqlite3_exec(db, query_appended.c_str(), nullptr, 0, &zErrMsg);
 
 	return rc;
+}
+
+Jockey GetJockeyByIdentityId(int identityId) 
+{
+	Jockey j;
+	std::string query = "SELECT * FROM Jockey WHERE Jockey.IdentityId =";
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, query.append(std::to_string(identityId)).c_str(), callback_Jockey, &j, &zErrMsg);
+
+	return j;
 }
