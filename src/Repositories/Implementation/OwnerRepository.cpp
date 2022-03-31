@@ -65,6 +65,12 @@ static int callback_Owner(void* out_param, int argc, char** argv, char** azColNa
 {
 	Owner* out_owner = (Owner*)out_param;
 
+	if (argc == 0) 
+	{
+		out_owner = nullptr;
+		return 0;
+	}
+
 	for (int i = 0; i < argc; i += 6)
 	{
 		if (strcmp(azColName[i], "Id") == 0)
@@ -164,6 +170,22 @@ Owner GetOwnerInfo(int ownerId)
 	std::string query = "SELECT * FROM Owner AS o WHERE o.Id = ";
 
 	std::string query_appended = query.append(std::to_string(ownerId));
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, query_appended.c_str(), callback_Owner, &owner, &zErrMsg);
+
+	return owner;
+}
+
+Owner GetOwnerByIdentityId(int identityId) 
+{
+	Owner owner;
+	std::string query = "SELECT * FROM Owner AS o WHERE o.IdentityId = ";
+
+	std::string query_appended = query.append(std::to_string(identityId));
 
 	sqlite3* db = GetConnection();
 

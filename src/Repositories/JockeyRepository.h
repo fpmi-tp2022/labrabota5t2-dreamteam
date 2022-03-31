@@ -18,4 +18,7 @@ Jockey GetJockeyInfo(int jockeyId);
 
 int Update(Jockey jockey);
 
+//TODO
+Jockey GetJockeyByIdentityId(int identityId);
+
 #endif

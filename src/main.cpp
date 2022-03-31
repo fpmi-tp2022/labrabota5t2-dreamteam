@@ -32,18 +32,22 @@ int main() {
 	Owner o2 = GetOwnerInfo(1);
 
 	Horse h;
+	h.Id = 2;
 	h.Age = 12;
 	h.Experience = 30.4;
 	h.Nickname = "Viena";
-	h.OwnerId = 3;
+	h.OwnerId = 1;
 	h.Price = 23.4;
 
-	Add(h);
+	Update(h);
 
-	std::vector<Horse> horses = GetHorsesByOwnerId(3);
+	std::vector<Horse> horses = GetHorsesByOwnerId(1);
 
 	std::vector<JockeyExperince> je = GetJockeyExperience();
 	std::vector<HorseResults> hr = GetHorsesWon();
+
+	Jockey jo = GetJockeyByIdentityId(3);
+	Owner o21 = GetOwnerByIdentityId(7);
 	
 	int rs = CloseConnection();
 	return 0;

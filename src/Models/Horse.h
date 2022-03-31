@@ -14,7 +14,7 @@ struct Horse
 	double Price;
 
 	//fk Owner
-	int OwnerId; 
+	int OwnerId;
 	Owner* Owner = NULL;
 };
 
