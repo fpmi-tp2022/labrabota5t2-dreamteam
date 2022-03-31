@@ -61,6 +61,38 @@ static int callback(void* out_param, int argc, char** argv, char** azColName)
 	return 0;
 }
 
+static int callback_Owner(void* out_param, int argc, char** argv, char** azColName)
+{
+	Owner* out_owner = (Owner*)out_param;
+
+	for (int i = 0; i < argc; i += 6)
+	{
+		if (strcmp(azColName[i], "Id") == 0)
+		{
+			out_owner->Id = strtol(argv[i], nullptr, 10);
+		}
+		if (strcmp(azColName[i + 1], "Name") == 0)
+		{
+			out_owner->Name = std::string(argv[i + 1]);
+		}
+		if (strcmp(azColName[i + 2], "YearOfBirth") == 0)
+		{
+			out_owner->YearOfBirth = strtol(argv[i + 2], nullptr, 10);
+		}
+		if (strcmp(azColName[i + 3], "Address") == 0)
+		{
+			out_owner->Address = std::string(argv[i + 3]);
+		}
+		if (strcmp(azColName[i + 4], "IdentityId") == 0)
+		{
+			out_owner->IdentityId = strtol(argv[i + 4], nullptr, 10);
+		}
+	}
+
+	return 0;
+}
+
+
 std::vector<Horse> GetHorsesByOwnerId(int OwnerId) 
 {
 	std::vector<Horse> horses;
@@ -102,4 +134,42 @@ Horse GetBestHorse(int OwnerId) {
 	}
 
 	return answer;
+}
+
+int Update(Owner owner) 
+{
+	std::string query = "UPDATE Owner SET Name = '";
+
+	std::string query_appended = query
+		.append(owner.Name)
+		.append("', YearOfBirth = ")
+		.append(std::to_string(owner.YearOfBirth))
+		.append(", Address = '")
+		.append(owner.Address)
+		.append("' WHERE Id = ")
+		.append(std::to_string(owner.Id));
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, query_appended.c_str(), nullptr, 0, &zErrMsg);
+
+	return rc;
+}
+
+Owner GetOwnerInfo(int ownerId) 
+{
+	Owner owner;
+	std::string query = "SELECT * FROM Owner AS o WHERE o.Id = ";
+
+	std::string query_appended = query.append(std::to_string(ownerId));
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, query_appended.c_str(), callback_Owner, &owner, &zErrMsg);
+
+	return owner;
 }
