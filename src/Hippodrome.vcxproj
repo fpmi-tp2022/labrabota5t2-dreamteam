@@ -156,6 +156,7 @@
     <ClInclude Include="Repositories\JockeyRepository.h" />
     <ClInclude Include="Repositories\PrizeRepository.h" />
     <ClInclude Include="Repositories\RaceRecordRepository.h" />
+    <ClInclude Include="Repositories\RaceRepository.h" />
     <ClInclude Include="Repositories\UserRepository.h" />
     <ClInclude Include="UserInteraction\UIManager.h" />
   </ItemGroup>
@@ -170,6 +171,7 @@
     <ClCompile Include="Repositories\Implementation\OwnerRepository.cpp" />
     <ClCompile Include="Repositories\Implementation\PrizeRepository.cpp" />
     <ClCompile Include="Repositories\Implementation\RaceRecordRepository.cpp" />
+    <ClCompile Include="Repositories\Implementation\RaceRepository.cpp" />
     <ClCompile Include="Repositories\Implementation\UserRepository.cpp" />
     <ClCompile Include="Repositories\OwnerRepository.h" />
     <ClCompile Include="UserInteraction\UIManager.cpp" />

@@ -8,6 +8,7 @@
 #include "Repositories/OwnerRepository.h"
 #include "Repositories/JockeyRepository.h"
 #include "Repositories/HorseRepository.h"
+#include "Repositories/RaceRepository.h"
 
 int main() {
 
@@ -48,6 +49,14 @@ int main() {
 
 	Jockey jo = GetJockeyByIdentityId(3);
 	Owner o21 = GetOwnerByIdentityId(7);
+
+	Race rrrr;
+	rrrr.Date = "20131210";
+	rrrr.Id = 3;
+	rrrr.Date = "20010101";
+
+	UpdateRace(rrrr);
+	//AddRace(rrrr);
 	
 	int rs = CloseConnection();
 	return 0;
