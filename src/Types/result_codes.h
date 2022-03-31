@@ -10,7 +10,7 @@ enum class Result {
 
 	LOGIN_COLLISION = 0x0101,
 	WRONG_PASSWORD = 0x0102,
-
+	DB_ERROR = 0x110,
 };
 
 #endif //_RESULT_CODES_DREAM_TEAM_GUARD
