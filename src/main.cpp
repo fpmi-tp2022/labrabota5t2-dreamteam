@@ -26,6 +26,12 @@ int main() {
 
 	Jockey j2 = GetJockeyInfo(1);
 
+	Owner o = GetOwnerInfo(1);
+	o.Name = "Alzbieta";
+	o.YearOfBirth = 1900;
+	Update(o);
+	Owner o2 = GetOwnerInfo(1);
+
 	std::vector<JockeyExperince> je = GetJockeyExperience();
 	std::vector<HorseResults> hr = GetHorsesWon();
 	
