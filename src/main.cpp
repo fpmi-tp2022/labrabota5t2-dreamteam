@@ -19,8 +19,16 @@ int main() {
 	std::vector<RaceRecord> v3 = GetByHorseId(2);
 
 	Jockey j = GetJockeyInfo(1);
+	j.Name = "Pawel";
+	j.Address = "Warsaw";
+
+	Update(j);
+
+	Jockey j2 = GetJockeyInfo(1);
+
 	std::vector<JockeyExperince> je = GetJockeyExperience();
 	std::vector<HorseResults> hr = GetHorsesWon();
+	
 	int rs = CloseConnection();
 	return 0;
 }

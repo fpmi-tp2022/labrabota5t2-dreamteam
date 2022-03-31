@@ -16,4 +16,6 @@ JockeyExperince GetBestJockey();
 
 Jockey GetJockeyInfo(int jockeyId);
 
+int Update(Jockey jockey);
+
 #endif

@@ -6,6 +6,7 @@
 #include "../Repositories/RaceRecordRepository.h"
 #include <iostream>
 #include <vector>
+
 #include <string>
 #include <typeinfo>
 
@@ -126,7 +127,7 @@ void UIManager::SelectForOwner()
 			break;
 		case 3:
 		{
-			auto info1 = GetBestHosce(user.Id);
+			auto info1 = GetBestHorse(user.Id);
 			PrintHorseInfo(info1);
 			break;
 		}
@@ -202,7 +203,7 @@ void UIManager::PrintHorseInfo(Horse horse)
 
 void UIManager::PrintJockeyInfo(Jockey jockey, bool nextline)
 {
-	std::cout << "Jockey id: " << jockey.Id << " ,Name: " << jockey.Name << " ,year of birth: " << jockey.YearOfBirth << ", address: " << jockey.Adress << " ,jockey experience: " << jockey.Experience;
+	std::cout << "Jockey id: " << jockey.Id << " ,Name: " << jockey.Name << " ,year of birth: " << jockey.YearOfBirth << ", address: " << jockey.Address << " ,jockey experience: " << jockey.Experience;
 	if (nextline) {
 		std::cout << ";\n";
 	}

@@ -92,7 +92,7 @@ JockeyExperince GetBestJockey()
 
 Jockey GetJockeyInfo(int jockeyId) 
 {
-	Jockey horses;
+	Jockey jockey;
 	std::string query = "SELECT * FROM Jockey AS j WHERE j.Id = ";
 
 	std::string query_appended = query.append(std::to_string(jockeyId));
@@ -101,7 +101,32 @@ Jockey GetJockeyInfo(int jockeyId)
 
 	char* zErrMsg = 0;
 
-	int rc = sqlite3_exec(db, query_appended.c_str(), callback_Jockey, &horses, &zErrMsg);
+	int rc = sqlite3_exec(db, query_appended.c_str(), callback_Jockey, &jockey, &zErrMsg);
 
-	return horses;
+	return jockey;
+}
+
+int Update(Jockey jockey) 
+{
+	std::string query = "UPDATE Jockey SET Name = '";
+
+	std::string query_appended = query
+		.append(jockey.Name)
+		.append("', ")
+		.append("Experience = ")
+		.append(std::to_string(jockey.Experience))
+		.append(", YearOfBirth = ")
+		.append(std::to_string(jockey.YearOfBirth))
+		.append(", Address = '")
+		.append(jockey.Address)
+		.append("' WHERE Id = ")
+		.append(std::to_string(jockey.Id));
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, query_appended.c_str(), nullptr, 0, &zErrMsg);
+
+	return rc;
 }
