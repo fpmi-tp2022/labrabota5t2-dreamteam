@@ -43,7 +43,6 @@ std::vector<User> TryGetUserByLogin(std::string login)
 	std::string query_string = "SELECT * FROM User WHERE User.Email = '";
 	const char* query = query_string.append(login).append("'").c_str();
 	int rc = sqlite3_exec(db, query, callback, &vectorOfUsers, &zErrMsg);
-	printf("%s", zErrMsg);
 	return vectorOfUsers;
 }
 
@@ -54,6 +53,5 @@ int AddUser(User* user)
 	std::string query_string = "INSERT INTO User (Email, PasswordSigned, Role) VALUES ('";
 	const char* query = query_string.append(user->Email).append("','").append(user->PasswordSigned).append("',").append(std::to_string(user->Role)).append(")").c_str();
 	int rc = sqlite3_exec(db, query, nullptr, 0, &zErrMsg);
-	printf("%s", zErrMsg);
-	return -1;
+	return rc;
 }

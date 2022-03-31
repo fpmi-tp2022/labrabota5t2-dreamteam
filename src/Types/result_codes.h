@@ -1,0 +1,16 @@
+#ifndef _RESULT_CODES_DREAM_TEAM_GUARD
+#define _RESULT_CODES_DREAM_TEAM_GUARD
+
+#define FAILED(result_code) (result_code) != Result::NO_ERROR
+
+enum class Result {
+	NO_ERROR = 0x0000,
+	NULL_POINTER = 0x0001,
+	INVALID_ARGUMENT = 0x0002,
+
+	LOGIN_COLLISION = 0x0101,
+	WRONG_PASSWORD = 0x0102,
+	DB_ERROR = 0x110,
+};
+
+#endif //_RESULT_CODES_DREAM_TEAM_GUARD
