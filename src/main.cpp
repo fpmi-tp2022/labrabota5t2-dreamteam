@@ -57,6 +57,15 @@ int main() {
 
 	UpdateRace(rrrr);
 	//AddRace(rrrr);
+
+	RaceRecord raceRecord;
+
+	raceRecord.HorseId = 1;
+	raceRecord.JockeyId = 1;
+	raceRecord.RaceId = 8;
+	raceRecord.Result = 33;
+
+	AddRaceRecord(raceRecord);
 	
 	int rs = CloseConnection();
 	return 0;
