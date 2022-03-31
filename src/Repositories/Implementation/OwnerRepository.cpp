@@ -90,7 +90,7 @@ std::vector<Horse> GetHorsesByOwnerId(int OwnerId)
 	return horses;
 }
 
-Horce GetBestHorce(int OwnerId) {
+Horse GetBestHorse(int OwnerId) {
 	auto horces = GetHorsesByOwnerId(OwnerId);
 	Horse answer = horces[0];
 

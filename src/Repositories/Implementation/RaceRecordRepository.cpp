@@ -52,7 +52,7 @@ static int callback_RaceRecords(void* out_param, int argc, char** argv, char** a
 		}
 		if (strcmp(azColName[i + 9], "Address") == 0)
 		{
-			rr.Jockey->Adress = std::string(argv[i + 9]);
+			rr.Jockey->Address = std::string(argv[i + 9]);
 		}
 		if (strcmp(azColName[i + 10], "IdentityId") == 0)
 		{
@@ -111,39 +111,40 @@ static int callback_RaceRecords(void* out_param, int argc, char** argv, char** a
 		out_vector->push_back(rr);
 	}
 
-	return 0;
+	return 0;	
 }
 
 std::string AllIncludedQuery() 
 {
-	std::string query_string = "SELECT \
-									rr.Id, \
-									rr.Result, \
-									rr.RaceId, \
-									rr.JockeyId, \
-									rr.HorseId, \
-									r.Date, \
-									j.Name, \
-									j.Experience, \
-									j.YearOfBirth, \
-									j.Address, \
-									j.IdentityId, \
-									j.Id, \
-									h.Nickname, \
-									h.Age, \
-									h.Experience, \
-									h.Price, \
-									o.Id, \
-									o.Name, \
-									o.YearOfBirth, \
-									o.Address, \
-									o.IdentityId\
-								FROM \
-								RaceRecord AS rr \
-									JOIN Race AS r ON rr.RaceId = r.Id \
-									JOIN Horse AS h ON rr.HorseId = h.Id \
-									JOIN Jockey AS j ON rr.JockeyId = j.Id \
-									JOIN Owner AS o ON h.OwnerId = o.Id ";
+	return "SELECT \
+				rr.Id, \
+				rr.Result, \
+				rr.RaceId, \
+				rr.JockeyId, \
+				rr.HorseId, \
+				r.Date, \
+				j.Name, \
+				j.Experience, \
+				j.YearOfBirth, \
+				j.Address, \
+				j.IdentityId, \
+				j.Id, \
+				h.Nickname, \
+				h.Age, \
+				h.Experience, \
+				h.Price, \
+				o.Id, \
+				o.Name, \
+				o.YearOfBirth, \
+				o.Address, \
+				o.IdentityId\
+			FROM \
+				RaceRecord AS rr \
+					JOIN Race AS r ON rr.RaceId = r.Id \
+					JOIN Horse AS h ON rr.HorseId = h.Id \
+					JOIN Jockey AS j ON rr.JockeyId = j.Id \
+					JOIN Owner AS o ON h.OwnerId = o.Id ";
+
 }
 
 std::vector<RaceRecord> GetJockeyRecords(int JockeyId)

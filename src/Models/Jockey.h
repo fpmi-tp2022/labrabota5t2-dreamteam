@@ -12,7 +12,7 @@ struct Jockey
 	std::string Name;
 	double Experience;
 	int YearOfBirth;
-	std::string Adress;
+	std::string Address;
 
 	//fk User
 	int IdentityId;

@@ -6,6 +6,8 @@
 #include "Repositories/RaceRecordRepository.h"
 #include "Models/RaceRecord.h"
 #include "Repositories/OwnerRepository.h"
+#include "Repositories/JockeyRepository.h"
+#include "Repositories/HorseRepository.h"
 
 int main() {
 
@@ -15,6 +17,10 @@ int main() {
 	std::vector<Horse> horses = GetHorsesByOwnerId(1);
 	std::vector<RaceRecord> v2 = GetByHorseId(1);
 	std::vector<RaceRecord> v3 = GetByHorseId(2);
+
+	Jockey j = GetJockeyInfo(1);
+	std::vector<JockeyExperince> je = GetJockeyExperience();
+	std::vector<HorseResults> hr = GetHorsesWon();
 	int rs = CloseConnection();
 	return 0;
 }

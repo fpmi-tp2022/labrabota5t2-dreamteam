@@ -126,7 +126,7 @@ void UIManager::SelectForOwner()
 			break;
 		case 3:
 		{
-			auto info1 = GetBestHorce(user.Id);
+			auto info1 = GetBestHosce(user.Id);
 			PrintHorseInfo(info1);
 			break;
 		}
