@@ -3,7 +3,6 @@
 
 #include <cstddef>
 
-#include "../Constants/Constants.h"
 #include "Owner.h"
 
 struct Horse 
