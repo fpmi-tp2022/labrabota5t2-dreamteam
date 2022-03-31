@@ -24,6 +24,21 @@ static int callback(void* out_param, int argc, char** argv, char** azColName)
 	return 0;
 }
 
+static int callback_count(void* out_param, int argc, char** argv, char** azColName)
+{
+	int* out_count = (int*)out_param;
+
+	for (int i = 0; i < argc; i += 1)
+	{
+		if (strcmp(azColName[i], "Count") == 0)
+		{
+			*out_count = (int)strtol(argv[i], nullptr, 10);
+		}
+	}
+
+	return 0;
+}
+
 std::vector<HorseResults> GetHorsesWon() 
 {
 	std::vector<HorseResults> results;
@@ -37,4 +52,39 @@ std::vector<HorseResults> GetHorsesWon()
 	int rc = sqlite3_exec(db, query.c_str(), callback, &results, &zErrMsg);
 
 	return results;
+}
+
+int Add(Horse horse)
+{
+	char* zErrMsg = 0;
+
+	int isPresent = 0;
+
+	std::string query = "SELECT Count(Owner.Id) AS Count FROM Owner WHERE Owner.Id = ";
+
+	sqlite3* db = GetConnection();
+
+	int rc1 = sqlite3_exec(db, query.append(std::to_string(horse.OwnerId)).c_str(), callback_count, &isPresent, &zErrMsg);
+
+	if (isPresent == 0) 
+	{
+		return -1;
+	}
+
+	std::string command = "INSERT INTO Horse (Nickname, Age, Experience, Price, OwnerId) VALUES ('";
+
+	std::string appended_query = command
+		.append(horse.Nickname)
+		.append("', ")
+		.append(std::to_string(horse.Age))
+		.append(", ")
+		.append(std::to_string(horse.Experience))
+		.append(", ")
+		.append(std::to_string(horse.Price))
+		.append(", ")
+		.append(std::to_string(horse.OwnerId))
+		.append(")");
+
+	int rc = sqlite3_exec(db, appended_query.c_str(), nullptr, 0, &zErrMsg);
+	return rc;
 }
