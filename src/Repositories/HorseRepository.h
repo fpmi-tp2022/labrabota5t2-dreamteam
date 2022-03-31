@@ -9,7 +9,8 @@ struct HorseResults {
 	int TimesWon;
 };
 
-//TODO
 std::vector<HorseResults> GetHorsesWon();
+
+int Add(Horse horse);
 
 #endif

@@ -14,7 +14,6 @@ int main() {
 	int rc = OpenConnection();
 
 	std::vector<RaceRecord> vector = GetByPeriod(std::string("20020000"), std::string("30000000"));
-	std::vector<Horse> horses = GetHorsesByOwnerId(1);
 	std::vector<RaceRecord> v2 = GetByHorseId(1);
 	std::vector<RaceRecord> v3 = GetByHorseId(2);
 
@@ -31,6 +30,17 @@ int main() {
 	o.YearOfBirth = 1900;
 	Update(o);
 	Owner o2 = GetOwnerInfo(1);
+
+	Horse h;
+	h.Age = 12;
+	h.Experience = 30.4;
+	h.Nickname = "Viena";
+	h.OwnerId = 3;
+	h.Price = 23.4;
+
+	Add(h);
+
+	std::vector<Horse> horses = GetHorsesByOwnerId(3);
 
 	std::vector<JockeyExperince> je = GetJockeyExperience();
 	std::vector<HorseResults> hr = GetHorsesWon();
