@@ -195,3 +195,24 @@ Owner GetOwnerByIdentityId(int identityId)
 
 	return owner;
 }
+
+int AddOwner(Owner owner) 
+{
+	sqlite3* db = GetConnection();
+
+	std::string command = "INSERT INTO Owner (Name, YearOfBirth, Address, IdentityId) VALUES ('";
+	std::string appended_command = command
+		.append(owner.Name)
+		.append("', ")
+		.append(std::to_string(owner.YearOfBirth))
+		.append(", '")
+		.append(owner.Address)
+		.append("', ")
+		.append(std::to_string(owner.IdentityId))
+		.append(")");
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, appended_command.c_str(), nullptr, 0, &zErrMsg);
+	return rc;
+}

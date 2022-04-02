@@ -70,7 +70,15 @@ int main() {
 	DeleteRace(2);
 
 	DeleteHorse(1);
-	
+
+	Jockey ooo;
+	ooo.Address = "Minsk";
+	ooo.IdentityId = 1;
+	ooo.Name = "Alzbieta";
+	ooo.YearOfBirth = 2010;
+	AddJockey(ooo);
+
 	int rs = CloseConnection();
 	return 0;
+
 }
