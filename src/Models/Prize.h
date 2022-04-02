@@ -6,10 +6,10 @@
 struct Prize
 {
 	int Id;
+	double Prize;
 
 	//fk RaceRecord
 	int RaceRecordId;
-	RaceRecord RaceRecord;
 };
 
 #endif

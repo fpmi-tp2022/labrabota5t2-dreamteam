@@ -9,6 +9,7 @@
 #include "Repositories/JockeyRepository.h"
 #include "Repositories/HorseRepository.h"
 #include "Repositories/RaceRepository.h"
+#include "Repositories/PrizeRepository.h"
 
 int main() {
 
@@ -22,7 +23,7 @@ int main() {
 	j.Name = "Pawel";
 	j.Address = "Warsaw";
 
-	Update(j);
+	//Update(j);
 
 	Jockey j2 = GetJockeyInfo(1);
 
@@ -40,7 +41,7 @@ int main() {
 	h.OwnerId = 1;
 	h.Price = 23.4;
 
-	Update(h);
+	//Update(h);
 
 	std::vector<Horse> horses = GetHorsesByOwnerId(1);
 
@@ -55,7 +56,7 @@ int main() {
 	rrrr.Id = 3;
 	rrrr.Date = "20010101";
 
-	UpdateRace(rrrr);
+	//UpdateRace(rrrr);
 	//AddRace(rrrr);
 
 	RaceRecord raceRecord;
@@ -65,18 +66,21 @@ int main() {
 	raceRecord.RaceId = 2;
 	raceRecord.Result = 35;
 
-	AddRaceRecord(raceRecord);
+	//AddRaceRecord(raceRecord);
 
-	DeleteRace(2);
+	//DeleteRace(2);
 
-	DeleteHorse(1);
+	//DeleteHorse(1);
 
 	Jockey ooo;
 	ooo.Address = "Minsk";
 	ooo.IdentityId = 1;
 	ooo.Name = "Alzbieta";
 	ooo.YearOfBirth = 2010;
-	AddJockey(ooo);
+	//AddJockey(ooo);
+
+	//GivePrize(1000, 1);
+	std::vector<Prize> prizes = GetAll();
 
 	int rs = CloseConnection();
 	return 0;
