@@ -10,6 +10,10 @@ std::vector<RaceRecord> GetByHorseId(int horseId);
 
 std::vector<RaceRecord> GetByPeriod(std::string from, std::string to);
 
+RaceRecord GetRaceRecordById(int raceRecordId);
+
 int AddRaceRecord(RaceRecord raceRecord);
+
+std::vector<RaceRecord> GetByRaceId(int raceId);
 
 #endif

@@ -257,3 +257,33 @@ int AddRaceRecord(RaceRecord raceRecord)
 	int rc4 = sqlite3_exec(db, query_appended.c_str(), nullptr, 0, &zErrMsg);
 	return rc4;
 }
+
+RaceRecord GetRaceRecordById(int raceRecordId) 
+{
+	std::vector<RaceRecord> records;
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	std::string query_string_appended = AllIncludedQuery().append("WHERE rr.Id = ").append(std::to_string(raceRecordId));
+
+	int rc = sqlite3_exec(db, query_string_appended.c_str(), callback_RaceRecords, &records, &zErrMsg);
+
+	return records[0];
+}
+
+std::vector<RaceRecord> GetByRaceId(int raceId) 
+{
+	std::vector<RaceRecord> records;
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	std::string query_string_appended = AllIncludedQuery().append("WHERE rr.RaceId = ").append(std::to_string(raceId));
+
+	int rc = sqlite3_exec(db, query_string_appended.c_str(), callback_RaceRecords, &records, &zErrMsg);
+
+	return records;
+}
