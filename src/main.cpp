@@ -62,10 +62,14 @@ int main() {
 
 	raceRecord.HorseId = 1;
 	raceRecord.JockeyId = 1;
-	raceRecord.RaceId = 8;
-	raceRecord.Result = 33;
+	raceRecord.RaceId = 2;
+	raceRecord.Result = 35;
 
 	AddRaceRecord(raceRecord);
+
+	DeleteRace(2);
+
+	DeleteHorse(1);
 	
 	int rs = CloseConnection();
 	return 0;

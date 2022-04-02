@@ -7,4 +7,6 @@ int AddRace(Race race);
 
 int UpdateRace(Race race);
 
+int DeleteRace(int raceId);
+
 #endif
