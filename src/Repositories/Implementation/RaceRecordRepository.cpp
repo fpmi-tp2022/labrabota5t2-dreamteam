@@ -147,6 +147,21 @@ std::string AllIncludedQuery()
 
 }
 
+static int callback_count(void* out_param, int argc, char** argv, char** azColName)
+{
+	int* out_count = (int*)out_param;
+
+	for (int i = 0; i < argc; i += 1)
+	{
+		if (strcmp(azColName[i], "Count") == 0)
+		{
+			*out_count = (int)strtol(argv[i], nullptr, 10);
+		}
+	}
+
+	return 0;
+}
+
 std::vector<RaceRecord> GetJockeyRecords(int JockeyId)
 {
 	std::vector<RaceRecord> records;
@@ -186,6 +201,87 @@ std::vector<RaceRecord> GetByPeriod(std::string from, std::string to)
 	char* zErrMsg = 0;
 
 	std::string query_string_appended = AllIncludedQuery().append("WHERE r.Date > '").append(from).append("' AND r.Date < '").append(to).append("'");
+
+	int rc = sqlite3_exec(db, query_string_appended.c_str(), callback_RaceRecords, &records, &zErrMsg);
+
+	return records;
+}
+
+int AddRaceRecord(RaceRecord raceRecord)
+{
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	int isPresent = 0;
+
+	std::string query = "SELECT Count(Horse.Id) AS Count FROM Horse WHERE Horse.Id = ";
+
+	int rc1 = sqlite3_exec(db, query.append(std::to_string(raceRecord.HorseId)).c_str(), callback_count, &isPresent, &zErrMsg);
+
+	if (isPresent == 0)
+	{
+		return -1;
+	}
+
+	query = "SELECT Count(Jockey.Id) AS Count FROM Jockey WHERE Jockey.Id = ";
+
+	int rc2 = sqlite3_exec(db, query.append(std::to_string(raceRecord.JockeyId)).c_str(), callback_count, &isPresent, &zErrMsg);
+
+	if (isPresent == 0)
+	{
+		return -1;
+	}
+
+	query = "SELECT Count(Race.Id) AS Count FROM Race WHERE Race.Id = ";
+
+	int rc3 = sqlite3_exec(db, query.append(std::to_string(raceRecord.RaceId)).c_str(), callback_count, &isPresent, &zErrMsg);
+
+	if (isPresent == 0)
+	{
+		return -1;
+	}
+
+	query = "INSERT INTO RaceRecord (Result, RaceId, HorseId, JockeyId) VALUES (";
+
+	std::string query_appended = query
+		.append(std::to_string(raceRecord.Result))
+		.append(", '")
+		.append(std::to_string(raceRecord.RaceId))
+		.append("', '")
+		.append(std::to_string(raceRecord.HorseId))
+		.append("', '")
+		.append(std::to_string(raceRecord.JockeyId))
+		.append("')");
+
+	int rc4 = sqlite3_exec(db, query_appended.c_str(), nullptr, 0, &zErrMsg);
+	return rc4;
+}
+
+RaceRecord GetRaceRecordById(int raceRecordId) 
+{
+	std::vector<RaceRecord> records;
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	std::string query_string_appended = AllIncludedQuery().append("WHERE rr.Id = ").append(std::to_string(raceRecordId));
+
+	int rc = sqlite3_exec(db, query_string_appended.c_str(), callback_RaceRecords, &records, &zErrMsg);
+
+	return records[0];
+}
+
+std::vector<RaceRecord> GetByRaceId(int raceId) 
+{
+	std::vector<RaceRecord> records;
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	std::string query_string_appended = AllIncludedQuery().append("WHERE rr.RaceId = ").append(std::to_string(raceId));
 
 	int rc = sqlite3_exec(db, query_string_appended.c_str(), callback_RaceRecords, &records, &zErrMsg);
 

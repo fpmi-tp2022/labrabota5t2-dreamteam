@@ -65,6 +65,12 @@ static int callback_Owner(void* out_param, int argc, char** argv, char** azColNa
 {
 	Owner* out_owner = (Owner*)out_param;
 
+	if (argc == 0) 
+	{
+		out_owner = nullptr;
+		return 0;
+	}
+
 	for (int i = 0; i < argc; i += 6)
 	{
 		if (strcmp(azColName[i], "Id") == 0)
@@ -172,4 +178,41 @@ Owner GetOwnerInfo(int ownerId)
 	int rc = sqlite3_exec(db, query_appended.c_str(), callback_Owner, &owner, &zErrMsg);
 
 	return owner;
+}
+
+Owner GetOwnerByIdentityId(int identityId) 
+{
+	Owner owner;
+	std::string query = "SELECT * FROM Owner AS o WHERE o.IdentityId = ";
+
+	std::string query_appended = query.append(std::to_string(identityId));
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, query_appended.c_str(), callback_Owner, &owner, &zErrMsg);
+
+	return owner;
+}
+
+int AddOwner(Owner owner) 
+{
+	sqlite3* db = GetConnection();
+
+	std::string command = "INSERT INTO Owner (Name, YearOfBirth, Address, IdentityId) VALUES ('";
+	std::string appended_command = command
+		.append(owner.Name)
+		.append("', ")
+		.append(std::to_string(owner.YearOfBirth))
+		.append(", '")
+		.append(owner.Address)
+		.append("', ")
+		.append(std::to_string(owner.IdentityId))
+		.append(")");
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, appended_command.c_str(), nullptr, 0, &zErrMsg);
+	return rc;
 }
