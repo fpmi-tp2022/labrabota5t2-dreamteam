@@ -15,4 +15,6 @@ int Add(Horse horse);
 
 int Update(Horse horse);
 
+int DeleteHorse(int horseId);
+
 #endif

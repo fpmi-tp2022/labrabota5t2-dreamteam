@@ -122,3 +122,25 @@ int Update(Horse horse)
 	int rc = sqlite3_exec(db, appended_query.c_str(), nullptr, 0, &zErrMsg);
 	return rc;
 }
+
+int DeleteHorse(int horseId) 
+{
+	sqlite3* db = GetConnection();
+
+	std::string query = "DELETE FROM RaceRecord WHERE RaceRecord.HorseId = ";
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, query.append(std::to_string(horseId)).c_str(), nullptr, 0, &zErrMsg);
+
+	if (rc != 0) 
+	{
+		return rc;
+	}
+
+	std::string query2 = "DELETE FROM Horse WHERE Horse.Id = ";
+
+	int rc2 = sqlite3_exec(db, query2.append(std::to_string(horseId)).c_str(), nullptr, 0, &zErrMsg);
+
+	return rc2;
+}

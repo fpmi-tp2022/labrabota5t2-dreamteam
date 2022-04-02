@@ -33,3 +33,27 @@ int UpdateRace(Race race)
 
 	return rc;
 }
+
+int DeleteRace(int raceId)
+{
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	std::string query = "DELETE FROM RaceRecord WHERE RaceRecord.RaceId = ";
+
+	std::string query_append = query.append(std::to_string(raceId));
+
+	int rc = sqlite3_exec(db, query_append.c_str(), nullptr, 0, &zErrMsg);
+
+	if (rc != 0) 
+	{
+		return rc;
+	}
+
+	std::string query_command = "DELETE FROM Race WHERE Race.Id = ";
+
+	int rc2 = sqlite3_exec(db, query_command.append(std::to_string(raceId)).c_str(), nullptr, 0, &zErrMsg);
+
+	return rc2;
+}
