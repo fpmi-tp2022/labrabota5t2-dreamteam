@@ -149,3 +149,26 @@ Jockey GetJockeyByIdentityId(int identityId)
 
 	return j;
 }
+
+int AddJockey(Jockey jockey) 
+{
+	sqlite3* db = GetConnection();
+
+	std::string command = "INSERT INTO Jockey (Name, YearOfBirth, Address, IdentityId, Experience) VALUES ('";
+	std::string appended_command = command
+		.append(jockey.Name)
+		.append("', ")
+		.append(std::to_string(jockey.YearOfBirth))
+		.append(", '")
+		.append(jockey.Address)
+		.append("', ")
+		.append(std::to_string(jockey.IdentityId))
+		.append(", ")
+		.append(std::to_string(jockey.Experience))
+		.append(")");
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, appended_command.c_str(), nullptr, 0, &zErrMsg);
+	return rc;
+}
