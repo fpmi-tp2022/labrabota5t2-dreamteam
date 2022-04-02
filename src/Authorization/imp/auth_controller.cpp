@@ -1,5 +1,6 @@
 #include "../auth_controller.h"
 #include "../security_manager.h"
+#include "../reg_info_manager.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -129,11 +130,21 @@ bool IsValidEmail(const string& email) {
 }
 
 Result EnterAdditionalInfo(UserSession* session) {
+	if (session == NULL) {
+		return Result::NULL_POINTER;
+	}
+	if (session->Id <= 0) {
+		return Result::INVALID_ID;
+	}
+	if (session->role != _HorseOwner && session->role != _Jockey) {
+		return Result::INVALID_ARGUMENT;
+	}
+
 	string name;
 	cout << "Enter your name: ";
 	getline(cin, name);
 
-	int yearOfBirth;
+	int yearOfBirth = 0;
 	auto t = time(0);
 	auto tm = *localtime(&t);
 
@@ -155,5 +166,16 @@ Result EnterAdditionalInfo(UserSession* session) {
 	cout << "Enter your address: ";
 	getline(cin, address);
 
-	return Result::NO_ERROR;
+	switch (session->role) {
+	case _Jockey: {
+		return RegisterJockey(name, yearOfBirth, address, session->Id);
+		break;
+	}
+	case _HorseOwner: {
+		return RegisterOwner(name, yearOfBirth, address, session->Id);
+		break;
+	}
+	default:
+		return Result::INVALID_ARGUMENT;
+	}
 }
