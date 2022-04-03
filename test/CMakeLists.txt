@@ -4,4 +4,4 @@ project(hippodrome-test)
 
 set(SOURCE_EXE main.cpp)
 
-add_executable(test ${SOURCE_EXE})
+add_executable(${PROJECT_NAME} ${SOURCE_EXE})
