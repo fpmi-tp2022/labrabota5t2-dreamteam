@@ -7,13 +7,13 @@ set(${PROJECT_NAME}_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE PATH "include di
 
 macro(add_source_folder folder_name)
   set(${folder_name}_files "")
-  message(STATUS ../${folder_name}/imp/*.cpp )
-  file(GLOB ${folder_name}_files RELATIVE ${CMAKE_CURRENT_LIST_DIR}
+  #message(STATUS ../${folder_name}/imp/*.cpp )
+  file(GLOB_RECURSE ${folder_name}_files RELATIVE ${CMAKE_CURRENT_LIST_DIR}
 												  ./${folder_name}/imp/*.cpp 
 												  ./${folder_name}/imp/*.c
 												  ./${folder_name}/*.h)
   source_group(${folder_name} FILES ${${folder_name}_files})
-  message(STATUS ${${folder_name}_files} ${${folder_name}_files})
+  #message(STATUS ${${folder_name}_files} ${${folder_name}_files})
   set(FILES_SOURCE ${FILES_SOURCE} ${${folder_name}_files})
 endmacro()
 
@@ -22,6 +22,8 @@ add_source_folder(Authorization)
 add_source_folder(DBManagment)
 add_source_folder(Repositories)
 add_source_folder(UserInteraction)
+add_source_folder(Models)
+add_source_folder(Types)
 
 set(FILES_SOURCE ${FILES_SOURCE} main.cpp)				
 
