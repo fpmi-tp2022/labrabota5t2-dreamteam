@@ -37,17 +37,17 @@ bool UIManager::ShowMenu()
 
 bool UIManager::ShowMenuForJockey()
 {
-	int choise = -1;
+	int choice = -1;
 
-	while (choise != 0)
+	while (choice != 0)
 	{
 		std::cout << "Menu:\n";
 		std::cout << "1 - SELECT OPERATIONS\n";
 		std::cout << "2 - UPDATE YOUR INFO\n";
 		std::cout << "0 - EXIT\n";
 
-		std::cin >> choise;
-		switch (choise)
+		std::cin >> choice;
+		switch (choice)
 		{
 		case 1:
 			SelectForJockey();
@@ -65,9 +65,9 @@ bool UIManager::ShowMenuForJockey()
 
 bool UIManager::ShowMenuForOwner()
 {
-	int choise = -1;
+	int choice = -1;
 
-	while (choise != 0)
+	while (choice != 0)
 	{
 		std::cout << "Menu:\n";
 		std::cout << "1 - SELECT OPERATIONS\n";
@@ -76,8 +76,8 @@ bool UIManager::ShowMenuForOwner()
 		std::cout << "4 - UPDATE\n";
 		std::cout << "0 - EXIT\n";
 
-		std::cin >> choise;
-		switch (choise)
+		std::cin >> choice;
+		switch (choice)
 		{
 		case 1:
 			SelectForOwner();
@@ -107,26 +107,26 @@ bool UIManager::ShowMenuForOwner()
 
 bool UIManager::ShowMenuForAdmin()
 {
-	int choise = -1;
+	int choice = -1;
 
-	while (choise != 0)
+	while (choice != 0)
 	{
 		std::cout << "Menu:\n";
 		std::cout << "1 - SELECT OPERATIONS\n";
-		std::cout << "2 - INSERT RACE\n";
+		std::cout << "2 - INSERT OPERATIONS\n";
 		std::cout << "3 - DELETE RACE\n";
 		std::cout << "4 - UPDATE RACE\n";
 		std::cout << "5 - GIVE MONEY TO WINNERS\n";
 		std::cout << "0 - EXIT\n";
 
-		std::cin >> choise;
-		switch (choise)
+		std::cin >> choice;
+		switch (choice)
 		{
 		case 1:
 			SelectForAdmin();
 			break;
 		case 2:
-			GetInfoAndAddRace();
+			InsertForAdmin();
 			break;
 		case 3:
 		{
@@ -166,19 +166,49 @@ bool UIManager::ShowMenuForAdmin()
 	return true;
 }
 
+void UIManager::InsertForAdmin()
+{
+	int choice = -1;
+
+	while (choice != 0)
+	{
+		std::cout << "Menu:\n";
+		std::cout << "1 - Add race";
+		std::cout << "2 - Add new owner\n";
+		std::cout << "3 - Add new jockey\n";
+		std::cout << "0 - EXIT\n";
+
+		std::cin >> choice;
+		switch (choice)
+		{
+		case 1:
+			GetInfoAndAddRace();
+			break;
+		case 2:
+			GetInfoAndAddOwner();
+			break;
+		case 3:
+			GetInfoAndAddJockey();
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 void UIManager::InsertForOwner()
 {
-	int choise = -1;
+	int choice = -1;
 
-	while (choise != 0)
+	while (choice != 0)
 	{
 		std::cout << "Menu:\n";
 		std::cout << "1 - Add horse";
 		std::cout << "2 - Add race record\n";
 		std::cout << "0 - EXIT\n";
 
-		std::cin >> choise;
-		switch (choise)
+		std::cin >> choice;
+		switch (choice)
 		{
 		case 1:
 			GetInfoAndAddHorse();
@@ -194,17 +224,17 @@ void UIManager::InsertForOwner()
 
 void UIManager::UpdateForOwner()
 {
-	int choise = -1;
+	int choice = -1;
 
-	while (choise != 0)
+	while (choice != 0)
 	{
 		std::cout << "Menu:\n";
 		std::cout << "1 - Update horse";
 		std::cout << "2 - Update your info\n";
 		std::cout << "0 - EXIT\n";
 
-		std::cin >> choise;
-		switch (choise)
+		std::cin >> choice;
+		switch (choice)
 		{
 		case 1:
 		{
@@ -226,9 +256,9 @@ void UIManager::UpdateForOwner()
 
 void UIManager::SelectForJockey()
 {
-	int choise = -1;
+	int choice = -1;
 
-	while (choise != 0)
+	while (choice != 0)
 	{
 		std::cout << "SELECT operations menu:\n";
 		std::cout << "1 - The jockey who participates the most times in the races\n";
@@ -237,8 +267,8 @@ void UIManager::SelectForJockey()
 		std::cout << "4 - Your races\n";
 		std::cout << "0 - EXIT\n";
 
-		std::cin >> choise;
-		switch (choise)
+		std::cin >> choice;
+		switch (choice)
 		{
 		case 1:
 			PrintInfoAboutBestJockey();
@@ -270,9 +300,9 @@ void UIManager::SelectForJockey()
 
 void UIManager::SelectForOwner()
 {
-	int choise = -1;
+	int choice = -1;
 
-	while (choise != 0)
+	while (choice != 0)
 	{
 		std::cout << "SELECT operations menu:\n";
 		std::cout << "1 - The jockey who participates the most times in the races\n";
@@ -281,8 +311,8 @@ void UIManager::SelectForOwner()
 		std::cout << "4 - Info about your horses\n";
 		std::cout << "0 - EXIT\n";
 
-		std::cin >> choise;
-		switch (choise)
+		std::cin >> choice;
+		switch (choice)
 		{
 		case 1:
 			PrintInfoAboutBestJockey();
@@ -312,17 +342,17 @@ void UIManager::SelectForOwner()
 }
 
 void UIManager::SelectForAdmin() {
-	int choise = -1;
+	int choice = -1;
 
-	while (choise != 0)
+	while (choice != 0)
 	{
 		std::cout << "SELECT operations menu:\n";
 		std::cout << "1 - The jockey who participates the most times in the races\n";
 		std::cout << "2 - All races\n";
 		std::cout << "0 - EXIT\n";
 
-		std::cin >> choise;
-		switch (choise)
+		std::cin >> choice;
+		switch (choice)
 		{
 		case 1:
 			PrintInfoAboutBestJockey();
@@ -420,7 +450,7 @@ void UIManager::GetInfoAndAddJockey()
 	std::cin >> jockey.Address;
 	std::cout << "Enter experience:\n";
 	std::cin >> jockey.Experience;
-	jockey.IdentityId = session.Id; //TODO: ask Pasha to explain the registration
+	jockey.IdentityId = session.Id;
 
 	AddJockey(jockey);
 }
@@ -461,7 +491,7 @@ void UIManager::GetInfoAndAddOwner()
 	std::cin >> owner.YearOfBirth;
 	std::cout << "Enter address:\n";
 	std::cin >> owner.Address;
-	owner.IdentityId = session.Id; //TODO: ask Pasha to explain the registration
+	owner.IdentityId = session.Id;
 
 	AddOwner(owner);
 }

@@ -18,6 +18,7 @@ private:
 	bool ShowMenuForJockey();
 	bool ShowMenuForOwner();
 	bool ShowMenuForAdmin();
+	void InsertForAdmin();
 	void InsertForOwner();
 	void UpdateForOwner();
 	void SelectForJockey();
