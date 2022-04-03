@@ -3,9 +3,9 @@
 #include <stdio.h>
 sqlite3* db;
 
-int OpenConnection() 
+int OpenConnection(const std::string& path) 
 {
-	int rc = sqlite3_open("../../hippodrome.db", &db);
+	int rc = sqlite3_open(path.c_str(), &db);
 	return rc;
 }
 

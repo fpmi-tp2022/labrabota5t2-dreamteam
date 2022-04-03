@@ -15,7 +15,7 @@
 
 int main() {
 
-	int rc = OpenConnection();
+	int rc = OpenConnection("../../hippodrome.db");
 
 	UserSession session = Authorization();
 

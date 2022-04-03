@@ -153,7 +153,7 @@ Result EnterAdditionalInfo(UserSession* session) {
 	for (string line; cout << "Enter your year of birth: " && getline(cin, line);) {
 		istringstream iss(line);
 		if (iss >> yearOfBirth && (c = iss.get() && (c == '\0' || c == '\n'))) {
-			if (yearOfBirth > 1900 && yearOfBirth <= tm.tm_year) {
+			if (yearOfBirth > 1900 && yearOfBirth <= tm.tm_year + 1900) {
 				done = true;
 				break;
 			}
