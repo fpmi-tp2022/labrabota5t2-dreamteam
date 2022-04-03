@@ -1,8 +1,8 @@
 #include <string.h>
 
 #include "../UserRepository.h"
-#include "../../DBManagment/includes/sqlite3.h"
-#include "../../DBManagment/includes/ConnectionKeeper.h"
+#include "../../DBManagment/sqlite3.h"
+#include "../../DBManagment/ConnectionKeeper.h"
 #include <stdlib.h>
 #include <string>
 

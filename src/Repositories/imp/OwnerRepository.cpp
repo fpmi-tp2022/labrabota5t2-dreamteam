@@ -1,6 +1,6 @@
 #include "../OwnerRepository.h"
-#include "../../DBManagment/includes/sqlite3.h"
-#include "../../DBManagment/includes/ConnectionKeeper.h"
+#include "../../DBManagment/sqlite3.h"
+#include "../../DBManagment/ConnectionKeeper.h"
 #include <string>
 
 static int callback(void* out_param, int argc, char** argv, char** azColName)
