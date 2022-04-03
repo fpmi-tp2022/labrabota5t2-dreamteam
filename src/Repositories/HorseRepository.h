@@ -17,4 +17,7 @@ int Update(Horse horse);
 
 int DeleteHorse(int horseId);
 
+//TODO
+Horse GetHorse(int hoeseId);
+
 #endif

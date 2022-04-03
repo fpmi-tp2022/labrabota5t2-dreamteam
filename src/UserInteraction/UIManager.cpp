@@ -3,12 +3,15 @@
 #include "../Models/Owner.h"
 #include "../Repositories/JockeyRepository.h"
 #include "../Repositories/OwnerRepository.h"
+#include "../Repositories/HorseRepository.h"
 #include "../Repositories/RaceRecordRepository.h"
+#include "../Repositories/RaceRepository.h"
+#include "../Repositories/PrizeRepository.h"
+#include "../Models/Authorization/Role.h"
+#include "../Authorization/security_manager.h"
 #include <iostream>
 #include <vector>
-
 #include <string>
-#include <typeinfo>
 
 UIManager::UIManager(User user)
 {
@@ -21,35 +24,36 @@ UIManager::~UIManager()
 
 bool UIManager::ShowMenu()
 {
+	if (user.Role == (Role)1) {
+		return ShowMenuForOwner();
+	}
+	else if (user.Role == (Role)2) {
+		return ShowMenuForJockey();
+	}
+	else {
+		return ShowMenuForAdmin();
+	}
+}
+
+bool UIManager::ShowMenuForJockey()
+{
 	int choise = -1;
 
 	while (choise != 0)
 	{
 		std::cout << "Menu:\n";
-		std::cout << "1 - SELECT operations\n";
-		std::cout << "2 - INSERT\n"; //TODO
-		std::cout << "3 - DELETE\n"; //TODO
-		std::cout << "4 - UPDATE\n"; //TODO
+		std::cout << "1 - SELECT OPERATIONS\n";
+		std::cout << "2 - UPDATE YOUR INFO\n";
 		std::cout << "0 - EXIT\n";
-		
+
 		std::cin >> choise;
 		switch (choise)
 		{
 		case 1:
-			if(typeid(user).name() == typeid(Jockey).name())
-				SelectForJockey();
-			else if (typeid(user).name() == typeid(Owner).name()) {
-				SelectForOwner();
-			}
-			else {
-				SelectForAdmin();
-			}
+			SelectForJockey();
 			break;
 		case 2:
-			break;
-		case 3:
-			break;
-		case 4 :
+			GetInfoAndUpdateJockey(user.Id);
 			break;
 		default:
 			break;
@@ -57,6 +61,167 @@ bool UIManager::ShowMenu()
 	}
 
 	return true;
+}
+
+bool UIManager::ShowMenuForOwner()
+{
+	int choise = -1;
+
+	while (choise != 0)
+	{
+		std::cout << "Menu:\n";
+		std::cout << "1 - SELECT OPERATIONS\n";
+		std::cout << "2 - INSERT OPERATIONS\n";
+		std::cout << "3 - DELETE HORSE\n";
+		std::cout << "4 - UPDATE\n";
+		std::cout << "0 - EXIT\n";
+
+		std::cin >> choise;
+		switch (choise)
+		{
+		case 1:
+			SelectForOwner();
+			break;
+		case 2:
+			InsertForOwner();
+			break;
+		case 3: 
+		{
+			int id;
+
+			std::cout << "Enter horse id:\n";
+			std::cin >> id;
+			DeleteHorse(id);
+			break;
+		}
+		case 4:
+			UpdateForOwner();
+			break;
+		default:
+			break;
+		}
+	}
+
+	return true;
+}
+
+bool UIManager::ShowMenuForAdmin()
+{
+	int choise = -1;
+
+	while (choise != 0)
+	{
+		std::cout << "Menu:\n";
+		std::cout << "1 - SELECT OPERATIONS\n";
+		std::cout << "2 - INSERT RACE\n";
+		std::cout << "3 - DELETE RACE\n";
+		std::cout << "4 - UPDATE RACE\n";
+		std::cout << "5 - GIVE MONEY TO WINNERS\n";
+		std::cout << "0 - EXIT\n";
+
+		std::cin >> choise;
+		switch (choise)
+		{
+		case 1:
+			SelectForAdmin();
+			break;
+		case 2:
+			GetInfoAndAddRace();
+			break;
+		case 3:
+		{
+			int id;
+
+			std::cout << "Enter race id:\n";
+			std::cin >> id;
+			DeleteRace(id);
+			break;
+		}
+		case 4:
+		{
+			int id;
+
+			std::cout << "Enter race id:\n";
+			std::cin >> id;
+			GetInfoAndUpdateRace(id);
+			break;
+		}
+		case 5:
+		{
+			double money;
+			int id;
+
+			std::cout << "Enter race id:\n";
+			std::cin >> id;
+			std::cout << "Enter amount of money:\n";
+			std::cin >> money;
+			GivePrize(money, id);
+			break;
+		}
+		default:
+			break;
+		}
+	}
+
+	return true;
+}
+
+void UIManager::InsertForOwner()
+{
+	int choise = -1;
+
+	while (choise != 0)
+	{
+		std::cout << "Menu:\n";
+		std::cout << "1 - Add horse";
+		std::cout << "2 - Add race record\n";
+		std::cout << "0 - EXIT\n";
+
+		std::cin >> choise;
+		switch (choise)
+		{
+		case 1:
+			GetInfoAndAddHorse();
+			break;
+		case 2:
+			GetInfoAndAddRaceRecord();
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void UIManager::UpdateForOwner()
+{
+	int choise = -1;
+
+	while (choise != 0)
+	{
+		std::cout << "Menu:\n";
+		std::cout << "1 - Update horse";
+		std::cout << "2 - Update your info\n";
+		std::cout << "0 - EXIT\n";
+
+		std::cin >> choise;
+		switch (choise)
+		{
+		case 1:
+		{
+			int id;
+
+			std::cout << "Enter horse id:\n";
+			std::cin >> id;
+			GetInfoAndUpdateHorse(id);
+			break;
+		}
+		case 2:
+			GetInfoAndUpdateOwner(user.Id);
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void UIManager::SelectForJockey()
@@ -213,4 +378,162 @@ void UIManager::PrintRaceInfo(RaceRecord race)
 {
 	std::cout << "Race id: " << race.RaceId << ", jockey: " << race.Jockey->Name << ", jockey id: " << race.JockeyId
 		<< " ,horse: " << race.Horse->Nickname << ", horse id: " << race.HorseId << ", result: " << race.Result << ";\n";
+}
+
+void UIManager::GetInfoAndUpdateJockey(int jockeyId)
+{
+	Jockey jockey = GetJockeyByIdentityId(jockeyId);
+
+	std::cout << "Enter name:\n";
+	std::cin >> jockey.Name;
+	std::cout << "Enter year of birth:\n";
+	std::cin >> jockey.YearOfBirth;
+	std::cout << "Enter address:\n";
+	std::cin >> jockey.Address;
+	std::cout << "Enter experience:\n";
+	std::cin >> jockey.Experience;
+
+	Update(jockey);
+}
+
+void UIManager::GetInfoAndAddJockey()
+{
+	Jockey jockey;
+	UserSession session;
+	std::string email, password;
+
+	std::cout << "Enter email:\n";
+	std::cin >> email;
+	std::cout << "Enter password:\n";
+	std::cin >> password;
+
+	if (RegisterNewUser(email, password, (Role)2, &session) != Result::NO_ERROR) {
+		std::cerr << "Registration error!\n";
+		return;
+	}
+
+	std::cout << "Enter name:\n";
+	std::cin >> jockey.Name;
+	std::cout << "Enter year of birth:\n";
+	std::cin >> jockey.YearOfBirth;
+	std::cout << "Enter address:\n";
+	std::cin >> jockey.Address;
+	std::cout << "Enter experience:\n";
+	std::cin >> jockey.Experience;
+	jockey.IdentityId = session.Id; //TODO: ask Pasha to explain the registration
+
+	AddJockey(jockey);
+}
+
+void UIManager::GetInfoAndUpdateOwner(int ownerId)
+{
+	Owner owner = GetOwnerByIdentityId(ownerId);
+
+	std::cout << "Enter name:\n";
+	std::cin >> owner.Name;
+	std::cout << "Enter year of birth:\n";
+	std::cin >> owner.YearOfBirth;
+	std::cout << "Enter address:\n";
+	std::cin >> owner.Address;
+	
+	Update(owner);
+}
+
+void UIManager::GetInfoAndAddOwner()
+{
+	Owner owner;
+	UserSession session;
+	std::string email, password;
+
+	std::cout << "Enter email:\n";
+	std::cin >> email;
+	std::cout << "Enter password:\n";
+	std::cin >> password;
+
+	if (RegisterNewUser(email, password, (Role)2, &session) != Result::NO_ERROR) {
+		std::cerr << "Registration error!\n";
+		return;
+	}
+
+	std::cout << "Enter name:\n";
+	std::cin >> owner.Name;
+	std::cout << "Enter year of birth:\n";
+	std::cin >> owner.YearOfBirth;
+	std::cout << "Enter address:\n";
+	std::cin >> owner.Address;
+	owner.IdentityId = session.Id; //TODO: ask Pasha to explain the registration
+
+	AddOwner(owner);
+}
+
+void UIManager::GetInfoAndUpdateRace(int raceId)
+{
+	auto raceRecord = GetRaceRecordById(raceId);
+
+	std::cout << "Enter date:\n";
+	std::cin >> raceRecord.Race->Date;
+
+	UpdateRace(*raceRecord.Race);
+}
+
+void UIManager::GetInfoAndAddRace()
+{
+	Race race;
+
+	std::cout << "Enter date:\n";
+	std::cin >> race.Date;
+
+	AddRace(race);
+}
+
+void UIManager::GetInfoAndAddRaceRecord()
+{
+	RaceRecord raceRecord;
+	
+	std::cout << "Enter horse id:\n";
+	std::cin >> raceRecord.HorseId;
+	std::cout << "Enter jockey id:\n";
+	std::cin >> raceRecord.JockeyId;
+	std::cout << "Enter race id:\n";
+	std::cin >> raceRecord.RaceId;
+	std::cout << "Enter result:\n";
+	std::cin >> raceRecord.Result;
+
+	AddRaceRecord(raceRecord);
+}
+
+void UIManager::GetInfoAndUpdateHorse(int horseId)
+{
+	Horse horse = GetHorse(horseId);
+
+	std::cout << "Enter nickname:\n";
+	std::cin >> horse.Nickname;
+	std::cout << "Enter owner id:\n";
+	std::cin >> horse.OwnerId;
+	std::cout << "Enter age:\n";
+	std::cin >> horse.Age;
+	std::cout << "Enter experience:\n";
+	std::cin >> horse.Experience;
+	std::cout << "Enter price:\n";
+	std::cin >> horse.Price;
+
+	Update(horse);
+}
+
+void UIManager::GetInfoAndAddHorse()
+{
+	Horse horse;
+
+	std::cout << "Enter nickname:\n";
+	std::cin >> horse.Nickname;
+	std::cout << "Enter owner id:\n";
+	std::cin >> horse.OwnerId;
+	std::cout << "Enter age:\n";
+	std::cin >> horse.Age;
+	std::cout << "Enter experience:\n";
+	std::cin >> horse.Experience;
+	std::cout << "Enter price:\n";
+	std::cin >> horse.Price;
+
+	Add(horse);
 }

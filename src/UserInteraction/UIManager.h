@@ -15,6 +15,11 @@ public:
 
 private:
 	User user;
+	bool ShowMenuForJockey();
+	bool ShowMenuForOwner();
+	bool ShowMenuForAdmin();
+	void InsertForOwner();
+	void UpdateForOwner();
 	void SelectForJockey();
 	void SelectForOwner();
 	void SelectForAdmin();
@@ -23,6 +28,15 @@ private:
 	void PrintHorseInfo(Horse horce);
 	void PrintJockeyInfo(Jockey jockey, bool nextline);
 	void PrintRaceInfo(RaceRecord race);
+	void GetInfoAndUpdateJockey(int jockeyId);
+	void GetInfoAndAddJockey();
+	void GetInfoAndUpdateOwner(int ownerId);
+	void GetInfoAndAddOwner();
+	void GetInfoAndUpdateRace(int raceId);
+	void GetInfoAndAddRace();
+	void GetInfoAndAddRaceRecord();
+	void GetInfoAndUpdateHorse(int horseId);
+	void GetInfoAndAddHorse();
 };
 
 #endif

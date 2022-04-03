@@ -144,3 +144,17 @@ int DeleteHorse(int horseId)
 
 	return rc2;
 }
+
+Horse GetHorse(int hoeseId)
+{
+	Horse horse;
+	std::string query = "SELECT * FROM Horse WHERE Horse.Id = ";
+
+	sqlite3* db = GetConnection();
+
+	char* zErrMsg = 0;
+
+	int rc = sqlite3_exec(db, query.append(std::to_string(hoeseId)).c_str(), callback, &horse, &zErrMsg);
+
+	return horse;
+}
