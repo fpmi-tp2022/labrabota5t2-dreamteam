@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Authorization\auth_controller.h" />
+    <ClInclude Include="Authorization\reg_info_manager.h" />
     <ClInclude Include="Authorization\security_manager.h" />
     <ClInclude Include="Authorization\sha256.h" />
     <ClInclude Include="Authorization\user_session.h" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Authorization\imp\auth_controller.cpp" />
+    <ClCompile Include="Authorization\imp\reg_info_manager.cpp" />
     <ClCompile Include="Authorization\imp\security_manager.cpp" />
     <ClCompile Include="Authorization\imp\sha256.cpp" />
     <ClCompile Include="DBManagment\imp\ConnectionKeeper.cpp" />
