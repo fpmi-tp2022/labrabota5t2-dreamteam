@@ -11,8 +11,6 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-set(SOURCE_EXE main.cpp)
-
 
 # Setting the variable that contains list of dependent directories.
 set(DEPENDENT_INC_DIR ${CMAKE_CURRENT_LIST_DIR}
@@ -25,7 +23,7 @@ file(GLOB ${PROJECT_NAME}_INC RELATIVE ${CMAKE_CURRENT_LIST_DIR} "*.h" "*.hpp")
 enable_testing()
 
 
-add_executable(${PROJECT_NAME} ${SOURCE_EXE})
+add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRC} ${${PROJECT_NAME}_INC})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${DEPENDENT_INC_DIR})
 target_link_libraries(${PROJECT_NAME} ${DEPENDENT_TARGET})
