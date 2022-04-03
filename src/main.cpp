@@ -10,6 +10,7 @@
 #include "Repositories/HorseRepository.h"
 #include "Repositories/RaceRepository.h"
 #include "Repositories/PrizeRepository.h"
+#include "UserInteraction/UIManager.h"
 
 int main() {
 
