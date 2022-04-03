@@ -1,7 +1,7 @@
 #include "../PrizeRepository.h"
 #include "../RaceRecordRepository.h"
-#include "../../DBManagment/includes/sqlite3.h"
-#include "../../DBManagment/includes/ConnectionKeeper.h"
+#include "../../DBManagment/sqlite3.h"
+#include "../../DBManagment/ConnectionKeeper.h"
 #include "../../Models/RaceRecord.h"
 #include <algorithm>
 #include <vector>

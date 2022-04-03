@@ -1,6 +1,6 @@
 #include "../RaceRecordRepository.h"
-#include "../../DBManagment/includes/sqlite3.h"
-#include "../../DBManagment/includes/ConnectionKeeper.h"
+#include "../../DBManagment/sqlite3.h"
+#include "../../DBManagment/ConnectionKeeper.h"
 
 static int callback_RaceRecords(void* out_param, int argc, char** argv, char** azColName)
 {
