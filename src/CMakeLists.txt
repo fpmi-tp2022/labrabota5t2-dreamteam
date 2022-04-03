@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(hippodrome)				
+project(hippodrome)		
+# Setting the global variable that contains root path to the current project.
+set(${PROJECT_NAME}_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE PATH "include directory")
+		
 
 macro(add_source_folder folder_name)
   set(${folder_name}_files "")
@@ -24,3 +27,4 @@ set(FILES_SOURCE ${FILES_SOURCE} main.cpp)
 
 
 add_executable(${PROJECT_NAME} ${FILES_SOURCE})
+add_library(${PROJECT_NAME}_lib ${FILES_SOURCE})
