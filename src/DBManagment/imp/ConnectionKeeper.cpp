@@ -1,11 +1,11 @@
-#include "../includes/ConnectionKeeper.h"
-#include "../includes/sqlite3.h"
+#include "../ConnectionKeeper.h"
+#include "../sqlite3.h"
 #include <stdio.h>
 sqlite3* db;
 
 int OpenConnection() 
 {
-	int rc = sqlite3_open("../hippodrome.db", &db);
+	int rc = sqlite3_open("../../hippodrome.db", &db);
 	return rc;
 }
 
