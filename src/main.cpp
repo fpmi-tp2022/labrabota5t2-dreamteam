@@ -11,10 +11,13 @@
 #include "Repositories/RaceRepository.h"
 #include "Repositories/PrizeRepository.h"
 #include "UserInteraction/UIManager.h"
+#include "Authorization/auth_controller.h"
 
 int main() {
 
 	int rc = OpenConnection();
+
+	UserSession session = Authorization();
 
 	std::vector<RaceRecord> vector = GetByPeriod(std::string("20020000"), std::string("30000000"));
 	std::vector<RaceRecord> v2 = GetByHorseId(1);
