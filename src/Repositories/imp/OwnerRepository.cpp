@@ -2,6 +2,7 @@
 #include "../../DBManagment/sqlite3.h"
 #include "../../DBManagment/ConnectionKeeper.h"
 #include <string>
+#include <string.h>
 
 static int callback(void* out_param, int argc, char** argv, char** azColName)
 {
@@ -34,26 +35,26 @@ static int callback(void* out_param, int argc, char** argv, char** azColName)
 		if (strcmp(azColName[i + 5], "OwnerId") == 0)
 		{
 			horse.OwnerId = strtol(argv[i + 5], nullptr, 10);
-			horse.Owner = new Owner;
-			horse.Owner->Id = horse.OwnerId;
+			horse.owner = new Owner;
+			horse.owner->Id = horse.OwnerId;
 		}
 		if (strcmp(azColName[i + 6], "Name") == 0)
 		{
-			horse.Owner->Name= std::string(argv[i + 6]);
+			horse.owner->Name= std::string(argv[i + 6]);
 		}
 		if (strcmp(azColName[i + 7], "YearOfBirth") == 0)
 		{
-			horse.Owner->YearOfBirth = strtod(argv[i + 7], nullptr);
+			horse.owner->YearOfBirth = strtod(argv[i + 7], nullptr);
 		}
 
 		if (strcmp(azColName[i + 8], "Address") == 0)
 		{
-			horse.Owner->Address = std::string(argv[i + 8]);
+			horse.owner->Address = std::string(argv[i + 8]);
 		}
 
 		if (strcmp(azColName[i + 9], "IdentityId") == 0)
 		{
-			horse.Owner->IdentityId = strtod(argv[i + 9], nullptr);
+			horse.owner->IdentityId = strtod(argv[i + 9], nullptr);
 		}
 		out_horses->push_back(horse);
 	}

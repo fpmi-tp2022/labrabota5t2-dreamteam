@@ -392,7 +392,7 @@ void UIManager::PrintInfoAboutAllRaces()
 
 void UIManager::PrintHorseInfo(Horse horse)
 {
-	std::cout << "Horce id: " << horse.Id << " ,nickname: " << horse.Nickname << " ,owner: " << horse.Owner << " ,owner id: " << horse.OwnerId
+	std::cout << "Horce id: " << horse.Id << " ,nickname: " << horse.Nickname << " ,owner: " << horse.owner << " ,owner id: " << horse.OwnerId
 		<< ", age:" << horse.Age << ", experience: " << horse.Experience << " ,price: " << horse.Price << ";\n";
 }
 
@@ -406,8 +406,8 @@ void UIManager::PrintJockeyInfo(Jockey jockey, bool nextline)
 
 void UIManager::PrintRaceInfo(RaceRecord race)
 {
-	std::cout << "Race id: " << race.RaceId << ", jockey: " << race.Jockey->Name << ", jockey id: " << race.JockeyId
-		<< " ,horse: " << race.Horse->Nickname << ", horse id: " << race.HorseId << ", result: " << race.Result << ";\n";
+	std::cout << "Race id: " << race.RaceId << ", jockey: " << race.jockey->Name << ", jockey id: " << race.JockeyId
+		<< " ,horse: " << race.horse->Nickname << ", horse id: " << race.HorseId << ", result: " << race.Result << ";\n";
 }
 
 void UIManager::GetInfoAndUpdateJockey(int jockeyId)
@@ -501,9 +501,9 @@ void UIManager::GetInfoAndUpdateRace(int raceId)
 	auto raceRecord = GetRaceRecordById(raceId);
 
 	std::cout << "Enter date:\n";
-	std::cin >> raceRecord.Race->Date;
+	std::cin >> raceRecord.race->Date;
 
-	UpdateRace(*raceRecord.Race);
+	UpdateRace(*raceRecord.race);
 }
 
 void UIManager::GetInfoAndAddRace()

@@ -5,6 +5,7 @@
 #include "../../Models/RaceRecord.h"
 #include <algorithm>
 #include <vector>
+#include <string.h>
 
 bool ResultComparer(RaceRecord a, RaceRecord b) 
 {

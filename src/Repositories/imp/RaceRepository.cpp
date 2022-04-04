@@ -2,6 +2,7 @@
 #include "../../DBManagment/sqlite3.h"
 #include "../../DBManagment/ConnectionKeeper.h"
 #include <string>
+#include <string.h>
 
 int AddRace(Race race)
 {

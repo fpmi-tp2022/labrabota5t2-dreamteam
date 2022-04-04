@@ -9,7 +9,7 @@ struct User
 	int Id;
 	std::string Email;
 	std::string PasswordSigned;
-	Role Role;
+	Role role;
 };
 
 #endif

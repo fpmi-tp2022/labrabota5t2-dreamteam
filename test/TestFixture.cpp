@@ -4,7 +4,6 @@
 #include "Repositories/HorseRepository.h"
 #include "DBManagment/ConnectionKeeper.h"
 #include "DBManagment/sqlite3.h"
-#include "executor.h"
 #include <filesystem>
 
 static const std::string db_path = "../../test/test.db";
