@@ -25,8 +25,13 @@ add_source_folder(UserInteraction)
 add_source_folder(Models)
 add_source_folder(Types)
 
-set(FILES_SOURCE ${FILES_SOURCE} main.cpp)				
+set(FILES_SOURCE ${FILES_SOURCE} main.cpp)		
 
+#sqlite		
+add_subdirectory(sqlite)
+include_directories(${PROJECT_NAME} ${sqlite_INCLUDE_DIR})
 
 add_executable(${PROJECT_NAME} ${FILES_SOURCE})
+target_link_libraries(${PROJECT_NAME} sqlite_lib)
 add_library(${PROJECT_NAME}_lib ${FILES_SOURCE})
+target_link_libraries(${PROJECT_NAME} sqlite_lib)

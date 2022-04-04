@@ -1,5 +1,5 @@
 #include "../UserRepository.h"
-#include "../../DBManagment/sqlite3.h"
+#include "sqlite3.h"
 #include "../../DBManagment/ConnectionKeeper.h"
 #include <stdlib.h>
 #include <string>
