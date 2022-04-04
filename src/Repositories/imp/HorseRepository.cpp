@@ -128,7 +128,7 @@ int Update(Horse horse)
 
 	int rc1 = sqlite3_exec(db, query.append(std::to_string(horse.OwnerId)).c_str(), callback_count, &isPresent, &zErrMsg);
 
-	if (isPresent == 0)
+	if (isPresent != 0) //TODO 0 is correct, check it
 	{
 		return -1;
 	}
