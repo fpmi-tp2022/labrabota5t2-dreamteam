@@ -24,6 +24,33 @@ static int callback(void* out_param, int argc, char** argv, char** azColName)
 	return 0;
 }
 
+static int callback_horse(void* out_param, int argc, char** argv, char** azColName) {
+	Horse* horse  = (Horse*)out_param;
+
+	for (int i = 0; i < argc; i += 6) {
+		if (strcmp(azColName[i], "Id") == 0) {
+			horse->Id = strtol(argv[i], nullptr, 10);
+		}
+		if (strcmp(azColName[i + 1], "Nickname") == 0) {
+			horse->Nickname = argv[i + 1];
+		}
+		if (strcmp(azColName[i + 2], "Age") == 0) {
+			horse->Age = strtol(argv[i + 2], nullptr, 10);
+		}
+		if (strcmp(azColName[i + 3], "Experience") == 0) {
+			horse->Experience = strtof(argv[i + 3], nullptr);
+		}
+		if (strcmp(azColName[i + 4], "Price") == 0) {
+			horse->Price = strtof(argv[i + 4], nullptr);
+		}
+		if (strcmp(azColName[i + 5], "OwnerId") == 0) {
+			horse->OwnerId = strtol(argv[i + 5], nullptr, 10);
+		}
+	}
+
+	return 0;
+}
+
 static int callback_count(void* out_param, int argc, char** argv, char** azColName)
 {
 	int* out_count = (int*)out_param;
@@ -154,7 +181,7 @@ Horse GetHorse(int hoeseId)
 
 	char* zErrMsg = 0;
 
-	int rc = sqlite3_exec(db, query.append(std::to_string(hoeseId)).c_str(), callback, &horse, &zErrMsg);
+	int rc = sqlite3_exec(db, query.append(std::to_string(hoeseId)).c_str(), callback_horse, &horse, &zErrMsg);
 
 	return horse;
 }
