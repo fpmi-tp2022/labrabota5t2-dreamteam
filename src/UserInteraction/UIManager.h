@@ -5,6 +5,7 @@
 #include "../Models/RaceRecord.h"
 #include "../Models/Jockey.h"
 #include "../Models/Horse.h"
+#include "../Authorization/user_session.h"
 
 class UIManager
 {
