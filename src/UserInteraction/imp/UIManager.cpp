@@ -13,7 +13,7 @@
 #include <vector>
 #include <string>
 
-UIManager::UIManager(User user)
+UIManager::UIManager(UserSession user)
 {
 	this->user = user;
 }
@@ -24,10 +24,10 @@ UIManager::~UIManager()
 
 bool UIManager::ShowMenu()
 {
-	if (user.Role == (Role)1) {
+	if (user.role == _HorseOwner) {
 		return ShowMenuForOwner();
 	}
-	else if (user.Role == (Role)2) {
+	else if (user.role == _Jockey) {
 		return ShowMenuForJockey();
 	}
 	else {

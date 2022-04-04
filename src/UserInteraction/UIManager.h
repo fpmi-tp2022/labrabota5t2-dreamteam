@@ -9,12 +9,12 @@
 class UIManager
 {
 public:
-	UIManager(User user);
+	UIManager(UserSession user);
 	~UIManager();
 	bool ShowMenu();
 
 private:
-	User user;
+	UserSession user;
 	bool ShowMenuForJockey();
 	bool ShowMenuForOwner();
 	bool ShowMenuForAdmin();
