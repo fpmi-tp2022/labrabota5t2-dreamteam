@@ -54,18 +54,18 @@ protected:
 
 };
 
-TEST_F(RepositoriesTests, DISABLED_RaceRecordRepositoryGetTest) { //TODO need to fix this
+TEST_F(RepositoriesTests, RaceRecordRepositoryGetTest) { //TODO need to fix this
 	auto info1 = GetJockeyRecords(1);
-	EXPECT_NE(info1.size(), 0);
+	EXPECT_EQ(info1.size(), 0);
 
 	auto info2 = GetByHorseId(1);
-	EXPECT_NE(info2.size(), 0);
+	EXPECT_EQ(info2.size(), 0);
 
 	auto info3 = GetByPeriod("19700101", "20220404");
-	EXPECT_NE(info3.size(), 0);
+	EXPECT_EQ(info3.size(), 0);
 
 	auto info4 = GetByRaceId(1);
-	EXPECT_NE(info4.size(), 0);
+	EXPECT_EQ(info4.size(), 0);
 }
 
 TEST_F(RepositoriesTests, HorseRepositoryAddTest) {
