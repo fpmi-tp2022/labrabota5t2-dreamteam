@@ -33,4 +33,7 @@ target_link_libraries(${PROJECT_NAME} gtest_main)
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME})
 
+message(STATUS ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY test.db DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 

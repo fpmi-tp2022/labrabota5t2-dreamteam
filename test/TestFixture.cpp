@@ -12,7 +12,7 @@
 #include "sqlite3.h"
 #include <filesystem>
 
-static const std::string db_path = "../../test/test.db";
+static const std::string db_path = "./test.db";
 static const std::string temp_db_path = "./temp_test.db";
 
 class RepositoriesTests :public ::testing::Test {
