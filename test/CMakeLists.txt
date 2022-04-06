@@ -25,6 +25,7 @@ enable_testing()
 
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRC} ${${PROJECT_NAME}_INC})
+add_test(${PROJECT_NAME}_test ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${DEPENDENT_INC_DIR})
 target_link_libraries(${PROJECT_NAME} ${DEPENDENT_TARGET})
