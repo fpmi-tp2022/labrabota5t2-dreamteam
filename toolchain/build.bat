@@ -5,8 +5,10 @@ set mypath=%~dp0
 echo %mypath%
 
 cd %mypath%
+cd ..
 rmdir /S /Q %build_folder%
 mkdir %build_folder%
 cd %build_folder%
 cmake ../
-cd ..
+cd %mypath%
+pause
