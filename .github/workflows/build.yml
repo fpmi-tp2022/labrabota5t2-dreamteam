@@ -5,9 +5,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - run: |
-            echo "Start build"
-            mkdir build
-            cd build
-            echo "End build"
+            - run: toolchain/build.sh
             

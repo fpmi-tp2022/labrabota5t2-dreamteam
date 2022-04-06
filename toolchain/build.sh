@@ -1,2 +1,2 @@
-cmake ../
-make ./build/
+echo "Start build"
+echo "End build"
