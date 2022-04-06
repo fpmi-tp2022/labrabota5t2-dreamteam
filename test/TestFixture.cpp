@@ -9,7 +9,7 @@
 #include "Repositories/RaceRepository.h"
 #include "Repositories/UserRepository.h"
 #include "DBManagment/ConnectionKeeper.h"
-#include "DBManagment/sqlite3.h"
+#include "sqlite3.h"
 #include <filesystem>
 
 static const std::string db_path = "../../test/test.db";
@@ -250,7 +250,7 @@ TEST_F(RepositoriesTests, UserRepositoryAddTest) {
 	User user;
 	user.Email = "a";
 	user.PasswordSigned = "a";
-	user.Role = _Jockey;
+	user.role = _Jockey;
 	std::string sql = "SELECT COUNT(*) FROM User";
 
 	auto countOfUsersBeforeAdd = ExecuteSQL(sql);

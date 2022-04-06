@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.16)
 
 project(hippodrome-test)	
 
@@ -14,9 +14,10 @@ FetchContent_MakeAvailable(googletest)
 
 # Setting the variable that contains list of dependent directories.
 set(DEPENDENT_INC_DIR ${CMAKE_CURRENT_LIST_DIR}
-                      ${hippodrome_INCLUDE_DIR})
+                      ${hippodrome_INCLUDE_DIR}
+					  ${sqlite_INCLUDE_DIR})
 # Setting the variable that contains the list of dependent targets.
-set(DEPENDENT_TARGET hippodrome_lib)
+set(DEPENDENT_TARGET hippodrome_lib sqlite_lib)
 file(GLOB ${PROJECT_NAME}_SRC RELATIVE ${CMAKE_CURRENT_LIST_DIR} "*.c" "*.cpp")
 file(GLOB ${PROJECT_NAME}_INC RELATIVE ${CMAKE_CURRENT_LIST_DIR} "*.h" "*.hpp")
 

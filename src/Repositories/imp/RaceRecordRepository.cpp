@@ -1,6 +1,7 @@
 #include "../RaceRecordRepository.h"
-#include "../../DBManagment/sqlite3.h"
+#include "sqlite3.h"
 #include "../../DBManagment/ConnectionKeeper.h"
+#include <string.h>
 
 static int callback_RaceRecords(void* out_param, int argc, char** argv, char** azColName)
 {
@@ -27,85 +28,85 @@ static int callback_RaceRecords(void* out_param, int argc, char** argv, char** a
 		}
 		if (strcmp(azColName[i + 4], "HorseId") == 0)
 		{
-			rr.Horse = new Horse;
+			rr.horse = new Horse;
 			rr.HorseId = strtol(argv[i + 4], nullptr, 10);
-			rr.Horse->Id = rr.HorseId;
+			rr.horse->Id = rr.HorseId;
 		}
 		if (strcmp(azColName[i + 5], "Date") == 0)
 		{
-			rr.Race = new Race;
-			rr.Race->Id = rr.RaceId;
-			rr.Race->Date = std::string(argv[i + 5]);
+			rr.race = new Race;
+			rr.race->Id = rr.RaceId;
+			rr.race->Date = std::string(argv[i + 5]);
 		}
 		if (strcmp(azColName[i + 6], "Name") == 0)
 		{
-			rr.Jockey = new Jockey;
-			rr.Jockey->Name = std::string(argv[i + 6]);
+			rr.jockey = new Jockey;
+			rr.jockey->Name = std::string(argv[i + 6]);
 		}
 		if (strcmp(azColName[i + 7], "Experience") == 0)
 		{
-			rr.Jockey->Experience = strtod(argv[i + 7], nullptr);
+			rr.jockey->Experience = strtod(argv[i + 7], nullptr);
 		}
 		if (strcmp(azColName[i + 8], "YearOfBirth") == 0)
 		{
-			rr.Jockey->YearOfBirth = strtol(argv[i + 8], nullptr, 10);
+			rr.jockey->YearOfBirth = strtol(argv[i + 8], nullptr, 10);
 		}
 		if (strcmp(azColName[i + 9], "Address") == 0)
 		{
-			rr.Jockey->Address = std::string(argv[i + 9]);
+			rr.jockey->Address = std::string(argv[i + 9]);
 		}
 		if (strcmp(azColName[i + 10], "IdentityId") == 0)
 		{
-			rr.Jockey->IdentityId = strtol(argv[i + 10], nullptr, 10);
-			rr.Jockey->Identity = nullptr;
+			rr.jockey->IdentityId = strtol(argv[i + 10], nullptr, 10);
+			rr.jockey->Identity = nullptr;
 		}
 		if (strcmp(azColName[i + 11], "Id") == 0)
 		{
-			rr.Jockey->Id = strtol(argv[i + 11], nullptr, 10);
-			rr.JockeyId = rr.Jockey->Id;
+			rr.jockey->Id = strtol(argv[i + 11], nullptr, 10);
+			rr.JockeyId = rr.jockey->Id;
 		}
 		if (strcmp(azColName[i + 12], "Nickname") == 0)
 		{
-			rr.Horse->Nickname = std::string(argv[i + 12]);
+			rr.horse->Nickname = std::string(argv[i + 12]);
 		}
 		if (strcmp(azColName[i + 13], "Age") == 0)
 		{
-			rr.Horse->Age = strtol(argv[i + 13], nullptr, 10);
+			rr.horse->Age = strtol(argv[i + 13], nullptr, 10);
 		}
 		if (strcmp(azColName[i + 14], "Experience") == 0)
 		{
-			rr.Horse->Experience = strtod(argv[i + 14], nullptr);
+			rr.horse->Experience = strtod(argv[i + 14], nullptr);
 		}
 		if (strcmp(azColName[i + 15], "Price") == 0)
 		{
-			rr.Horse->Price = strtod(argv[i + 15], nullptr);
+			rr.horse->Price = strtod(argv[i + 15], nullptr);
 		}
 
 		if (strcmp(azColName[i + 16], "Id") == 0)
 		{
-			rr.Horse->Owner = new Owner;
-			rr.Horse->Owner->Id = strtod(argv[i + 16], nullptr);
-			rr.Horse->OwnerId = rr.Horse->Owner->Id;
+			rr.horse->owner = new Owner;
+			rr.horse->owner->Id = strtod(argv[i + 16], nullptr);
+			rr.horse->OwnerId = rr.horse->owner->Id;
 		}
 
 		if (strcmp(azColName[i + 17], "Name") == 0)
 		{
-			rr.Horse->Owner->Name = std::string(argv[i + 17]);
+			rr.horse->owner->Name = std::string(argv[i + 17]);
 		}
 
 		if (strcmp(azColName[i + 18], "YearOfBirth") == 0)
 		{
-			rr.Horse->Owner->YearOfBirth = strtol(argv[i + 18], nullptr, 10);
+			rr.horse->owner->YearOfBirth = strtol(argv[i + 18], nullptr, 10);
 		}
 
 		if (strcmp(azColName[i + 19], "Address") == 0)
 		{
-			rr.Horse->Owner->Address = std::string(argv[i + 19]);
+			rr.horse->owner->Address = std::string(argv[i + 19]);
 		}
 
 		if (strcmp(azColName[i + 20], "IdentityId") == 0)
 		{
-			rr.Horse->Owner->IdentityId = strtol(argv[i + 20], nullptr, 10);
+			rr.horse->owner->IdentityId = strtol(argv[i + 20], nullptr, 10);
 		}
 
 		out_vector->push_back(rr);

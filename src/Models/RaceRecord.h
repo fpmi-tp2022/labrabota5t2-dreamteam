@@ -12,15 +12,15 @@ struct RaceRecord
 
 	//fk race
 	int RaceId;
-	Race* Race = NULL;
+	Race* race = NULL;
 
 	//fk Jockey
 	int JockeyId;
-	Jockey* Jockey = NULL;
+	Jockey* jockey = NULL;
 
 	//fk Horse
 	int HorseId;
-	Horse* Horse = NULL;
+	Horse* horse = NULL;
 };
 
 #endif

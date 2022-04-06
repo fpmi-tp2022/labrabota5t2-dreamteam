@@ -26,7 +26,7 @@ Result VerifyCredentials(const std::string& login, const std::string& password, 
 	}
 
 	session->Id = users[0].Id;
-	session->role = users[0].Role;
+	session->role = users[0].role;
 	return Result::NO_ERROR;
 }
 
@@ -47,7 +47,7 @@ Result RegisterNewUser(const std::string& login, const std::string& password, Ro
 	}
 
 	session->Id = users[0].Id;
-	session->role = users[0].Role;
+	session->role = users[0].role;
 	return Result::NO_ERROR;
 }
 

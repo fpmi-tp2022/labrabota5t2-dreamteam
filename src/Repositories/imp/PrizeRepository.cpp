@@ -1,10 +1,11 @@
 #include "../PrizeRepository.h"
 #include "../RaceRecordRepository.h"
-#include "../../DBManagment/sqlite3.h"
+#include "sqlite3.h"
 #include "../../DBManagment/ConnectionKeeper.h"
 #include "../../Models/RaceRecord.h"
 #include <algorithm>
 #include <vector>
+#include <string.h>
 
 bool ResultComparer(RaceRecord a, RaceRecord b) 
 {

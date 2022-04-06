@@ -15,7 +15,7 @@ struct Horse
 
 	//fk Owner
 	int OwnerId;
-	Owner* Owner = NULL;
+	Owner* owner = NULL;
 };
 
 #endif

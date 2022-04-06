@@ -1,10 +1,9 @@
-#include <string.h>
-
 #include "../UserRepository.h"
-#include "../../DBManagment/sqlite3.h"
+#include "sqlite3.h"
 #include "../../DBManagment/ConnectionKeeper.h"
 #include <stdlib.h>
 #include <string>
+#include <string.h>
 
 static int callback(void* out_param, int argc, char** argv, char** azColName) 
 {
@@ -27,7 +26,7 @@ static int callback(void* out_param, int argc, char** argv, char** azColName)
 		}
 		if (strcmp(azColName[i + 3], "Role") == 0)
 		{
-			user.Role = (Role)strtol(argv[i + 3], nullptr, 10);
+			user.role = (Role)strtol(argv[i + 3], nullptr, 10);
 		}
 		out_user->push_back(user);
 	}
@@ -51,7 +50,7 @@ int AddUser(User* user)
 	sqlite3* db = GetConnection();
 	char* zErrMsg = 0;
 	std::string query_string = "INSERT INTO User (Email, PasswordSigned, Role) VALUES ('";
-	const char* query = query_string.append(user->Email).append("','").append(user->PasswordSigned).append("',").append(std::to_string(user->Role)).append(")").c_str();
+	const char* query = query_string.append(user->Email).append("','").append(user->PasswordSigned).append("',").append(std::to_string(user->role)).append(")").c_str();
 	int rc = sqlite3_exec(db, query, nullptr, 0, &zErrMsg);
 	return rc;
 }
