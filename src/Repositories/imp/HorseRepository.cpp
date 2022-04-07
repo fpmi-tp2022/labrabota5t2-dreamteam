@@ -94,7 +94,7 @@ int Add(Horse horse)
 
 	int rc1 = sqlite3_exec(db, query.append(std::to_string(horse.OwnerId)).c_str(), callback_count, &isPresent, &zErrMsg);
 
-	if (isPresent == 0) 
+	if (isPresent != 0) 
 	{
 		return -1;
 	}

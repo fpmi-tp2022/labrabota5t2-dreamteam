@@ -24,6 +24,7 @@ int main() {
 		std::cout << "0 - EXIT\n";
 
 		std::cin >> choice;
+		std::cin.ignore();
 		switch (choice)
 		{
 		case 1:

@@ -203,7 +203,7 @@ void UIManager::InsertForOwner()
 	while (choice != 0)
 	{
 		std::cout << "Menu:\n";
-		std::cout << "1 - Add horse";
+		std::cout << "1 - Add horse\n";
 		std::cout << "2 - Add race record\n";
 		std::cout << "0 - EXIT\n";
 
@@ -245,9 +245,11 @@ void UIManager::UpdateForOwner()
 			GetInfoAndUpdateHorse(id);
 			break;
 		}
-		case 2:
-			GetInfoAndUpdateOwner(user.Id);
+		case 2: {
+			auto owner = GetOwnerByIdentityId(user.Id);
+			GetInfoAndUpdateOwner(owner.Id);
 			break;
+		}
 		default:
 			break;
 		}
@@ -277,14 +279,16 @@ void UIManager::SelectForJockey()
 			PrintInfoAboutAllRaces();
 			break;
 		case 3: {
-			auto info1 = GetJockeyInfo(user.Id);
+			auto jockey = GetJockeyByIdentityId(user.Id);
+			auto info1 = GetJockeyInfo(jockey.Id);
 			PrintJockeyInfo(info1, true);
 			break;
 		}
 			
 		case 4:
 		{
-			auto info2 = GetJockeyRecords(user.Id);
+			auto jockey = GetJockeyByIdentityId(user.Id);
+			auto info2 = GetJockeyRecords(jockey.Id);
 			for (auto race : info2)
 			{
 				PrintRaceInfo(race);
@@ -322,13 +326,15 @@ void UIManager::SelectForOwner()
 			break;
 		case 3:
 		{
-			auto info1 = GetBestHorse(user.Id);
+			auto owner = GetOwnerByIdentityId(user.Id);
+			auto info1 = GetBestHorse(owner.Id);
 			PrintHorseInfo(info1);
 			break;
 		}
 		case 4:
 		{
-			auto info2 = GetHorsesByOwnerId(user.Id);
+			auto owner = GetOwnerByIdentityId(user.Id);
+			auto info2 = GetHorsesByOwnerId(owner.Id);
 			for (auto h : info2)
 			{
 				PrintHorseInfo(h);
@@ -538,8 +544,8 @@ void UIManager::GetInfoAndUpdateHorse(int horseId)
 
 	std::cout << "Enter nickname:\n";
 	std::cin >> horse.Nickname;
-	std::cout << "Enter owner id:\n";
-	std::cin >> horse.OwnerId;
+	auto owner = GetOwnerByIdentityId(user.Id);
+	horse.OwnerId = owner.Id;
 	std::cout << "Enter age:\n";
 	std::cin >> horse.Age;
 	std::cout << "Enter experience:\n";
@@ -556,8 +562,8 @@ void UIManager::GetInfoAndAddHorse()
 
 	std::cout << "Enter nickname:\n";
 	std::cin >> horse.Nickname;
-	std::cout << "Enter owner id:\n";
-	std::cin >> horse.OwnerId;
+	auto owner = GetOwnerByIdentityId(user.Id);
+	horse.OwnerId = owner.Id;
 	std::cout << "Enter age:\n";
 	std::cin >> horse.Age;
 	std::cout << "Enter experience:\n";
