@@ -398,13 +398,13 @@ void UIManager::PrintInfoAboutAllRaces()
 
 void UIManager::PrintHorseInfo(Horse horse)
 {
-	std::cout << "Horce id: " << horse.Id << " ,nickname: " << horse.Nickname << " ,owner: " << horse.owner << " ,owner id: " << horse.OwnerId
-		<< ", age:" << horse.Age << ", experience: " << horse.Experience << " ,price: " << horse.Price << ";\n";
+	std::cout << "Horce id: " << horse.Id << ", nickname: " << horse.Nickname << ", owner id: " << horse.OwnerId
+		<< ", age: " << horse.Age << ", experience: " << horse.Experience << ", price: " << horse.Price << ";\n";
 }
 
 void UIManager::PrintJockeyInfo(Jockey jockey, bool nextline)
 {
-	std::cout << "Jockey id: " << jockey.Id << " ,Name: " << jockey.Name << " ,year of birth: " << jockey.YearOfBirth << ", address: " << jockey.Address << " ,jockey experience: " << jockey.Experience;
+	std::cout << "Jockey id: " << jockey.Id << ", Name: " << jockey.Name << ", year of birth: " << jockey.YearOfBirth << ", address: " << jockey.Address << ", jockey experience: " << jockey.Experience;
 	if (nextline) {
 		std::cout << ";\n";
 	}
@@ -413,7 +413,7 @@ void UIManager::PrintJockeyInfo(Jockey jockey, bool nextline)
 void UIManager::PrintRaceInfo(RaceRecord race)
 {
 	std::cout << "Race id: " << race.RaceId << ", jockey: " << race.jockey->Name << ", jockey id: " << race.JockeyId
-		<< " ,horse: " << race.horse->Nickname << ", horse id: " << race.HorseId << ", result: " << race.Result << ";\n";
+		<< ", horse: " << race.horse->Nickname << ", horse id: " << race.HorseId << ", result: " << race.Result << ";\n";
 }
 
 void UIManager::GetInfoAndUpdateJockey(int jockeyId)
