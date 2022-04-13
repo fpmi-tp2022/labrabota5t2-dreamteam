@@ -13,16 +13,9 @@
 #include <vector>
 #include <string>
 
-UIManager::UIManager(UserSession user)
-{
-	this->user = user;
-}
+UserSession user;
 
-UIManager::~UIManager()
-{
-}
-
-bool UIManager::ShowMenu()
+bool ShowMenu()
 {
 	if (user.role == _HorseOwner) {
 		return ShowMenuForOwner();
@@ -35,7 +28,7 @@ bool UIManager::ShowMenu()
 	}
 }
 
-bool UIManager::ShowMenuForJockey()
+bool ShowMenuForJockey()
 {
 	int choice = -1;
 
@@ -63,7 +56,7 @@ bool UIManager::ShowMenuForJockey()
 	return true;
 }
 
-bool UIManager::ShowMenuForOwner()
+bool ShowMenuForOwner()
 {
 	int choice = -1;
 
@@ -105,7 +98,7 @@ bool UIManager::ShowMenuForOwner()
 	return true;
 }
 
-bool UIManager::ShowMenuForAdmin()
+bool ShowMenuForAdmin()
 {
 	int choice = -1;
 
@@ -166,7 +159,7 @@ bool UIManager::ShowMenuForAdmin()
 	return true;
 }
 
-void UIManager::InsertForAdmin()
+void InsertForAdmin()
 {
 	int choice = -1;
 
@@ -196,7 +189,7 @@ void UIManager::InsertForAdmin()
 	}
 }
 
-void UIManager::InsertForOwner()
+void InsertForOwner()
 {
 	int choice = -1;
 
@@ -222,7 +215,7 @@ void UIManager::InsertForOwner()
 	}
 }
 
-void UIManager::UpdateForOwner()
+void UpdateForOwner()
 {
 	int choice = -1;
 
@@ -256,7 +249,7 @@ void UIManager::UpdateForOwner()
 	}
 }
 
-void UIManager::SelectForJockey()
+void SelectForJockey()
 {
 	int choice = -1;
 
@@ -302,7 +295,7 @@ void UIManager::SelectForJockey()
 	}
 }
 
-void UIManager::SelectForOwner()
+void SelectForOwner()
 {
 	int choice = -1;
 
@@ -347,7 +340,7 @@ void UIManager::SelectForOwner()
 	}
 }
 
-void UIManager::SelectForAdmin() {
+void SelectForAdmin() {
 	int choice = -1;
 
 	while (choice != 0)
@@ -372,7 +365,7 @@ void UIManager::SelectForAdmin() {
 	}
 }
 
-void UIManager::PrintInfoAboutBestJockey()
+void PrintInfoAboutBestJockey()
 {
 	auto info = GetBestJockey();
 	auto jockeyInfo = GetJockeyInfo(info.JockeyId);
@@ -381,7 +374,7 @@ void UIManager::PrintInfoAboutBestJockey()
 	std::cout << " ,race amount: " << info.RaceAmount << ";\n";
 }
 
-void UIManager::PrintInfoAboutAllRaces()
+void PrintInfoAboutAllRaces()
 {
 	std::string begin, end;
 	std::cout << "Enter the beginning of the period:\n";
@@ -396,13 +389,13 @@ void UIManager::PrintInfoAboutAllRaces()
 	}
 }
 
-void UIManager::PrintHorseInfo(Horse horse)
+void PrintHorseInfo(Horse horse)
 {
 	std::cout << "Horce id: " << horse.Id << ", nickname: " << horse.Nickname << ", owner id: " << horse.OwnerId
 		<< ", age: " << horse.Age << ", experience: " << horse.Experience << ", price: " << horse.Price << ";\n";
 }
 
-void UIManager::PrintJockeyInfo(Jockey jockey, bool nextline)
+void PrintJockeyInfo(Jockey jockey, bool nextline)
 {
 	std::cout << "Jockey id: " << jockey.Id << ", Name: " << jockey.Name << ", year of birth: " << jockey.YearOfBirth << ", address: " << jockey.Address << ", jockey experience: " << jockey.Experience;
 	if (nextline) {
@@ -410,13 +403,13 @@ void UIManager::PrintJockeyInfo(Jockey jockey, bool nextline)
 	}
 }
 
-void UIManager::PrintRaceInfo(RaceRecord race)
+void PrintRaceInfo(RaceRecord race)
 {
 	std::cout << "Race id: " << race.RaceId << ", jockey: " << race.jockey->Name << ", jockey id: " << race.JockeyId
 		<< ", horse: " << race.horse->Nickname << ", horse id: " << race.HorseId << ", result: " << race.Result << ";\n";
 }
 
-void UIManager::GetInfoAndUpdateJockey(int jockeyId)
+void GetInfoAndUpdateJockey(int jockeyId)
 {
 	Jockey jockey = GetJockeyByIdentityId(jockeyId);
 
@@ -432,7 +425,7 @@ void UIManager::GetInfoAndUpdateJockey(int jockeyId)
 	Update(jockey);
 }
 
-void UIManager::GetInfoAndAddJockey()
+void GetInfoAndAddJockey()
 {
 	Jockey jockey;
 	UserSession session;
@@ -461,7 +454,7 @@ void UIManager::GetInfoAndAddJockey()
 	AddJockey(jockey);
 }
 
-void UIManager::GetInfoAndUpdateOwner(int ownerId)
+void GetInfoAndUpdateOwner(int ownerId)
 {
 	Owner owner = GetOwnerByIdentityId(ownerId);
 
@@ -475,7 +468,7 @@ void UIManager::GetInfoAndUpdateOwner(int ownerId)
 	Update(owner);
 }
 
-void UIManager::GetInfoAndAddOwner()
+void GetInfoAndAddOwner()
 {
 	Owner owner;
 	UserSession session;
@@ -502,7 +495,7 @@ void UIManager::GetInfoAndAddOwner()
 	AddOwner(owner);
 }
 
-void UIManager::GetInfoAndUpdateRace(int raceId)
+void GetInfoAndUpdateRace(int raceId)
 {
 	auto raceRecord = GetRaceRecordById(raceId);
 
@@ -512,7 +505,7 @@ void UIManager::GetInfoAndUpdateRace(int raceId)
 	UpdateRace(*raceRecord.race);
 }
 
-void UIManager::GetInfoAndAddRace()
+void GetInfoAndAddRace()
 {
 	Race race;
 
@@ -522,7 +515,7 @@ void UIManager::GetInfoAndAddRace()
 	AddRace(race);
 }
 
-void UIManager::GetInfoAndAddRaceRecord()
+void GetInfoAndAddRaceRecord()
 {
 	RaceRecord raceRecord;
 	
@@ -538,7 +531,7 @@ void UIManager::GetInfoAndAddRaceRecord()
 	AddRaceRecord(raceRecord);
 }
 
-void UIManager::GetInfoAndUpdateHorse(int horseId)
+void GetInfoAndUpdateHorse(int horseId)
 {
 	Horse horse = GetHorse(horseId);
 
@@ -556,7 +549,7 @@ void UIManager::GetInfoAndUpdateHorse(int horseId)
 	Update(horse);
 }
 
-void UIManager::GetInfoAndAddHorse()
+void GetInfoAndAddHorse()
 {
 	Horse horse;
 

@@ -29,9 +29,9 @@ int main() {
 		{
 		case 1:
 		{
-			auto user = Authorization();
-			auto manager = UIManager(user);
-			manager.ShowMenu();
+			auto authorizedUser = Authorization();
+			user = authorizedUser;
+			ShowMenu();
 
 			break;
 		}

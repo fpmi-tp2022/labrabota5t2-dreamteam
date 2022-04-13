@@ -7,38 +7,31 @@
 #include "../Models/Horse.h"
 #include "../Authorization/user_session.h"
 
-class UIManager
-{
-public:
-	UIManager(UserSession user);
-	~UIManager();
-	bool ShowMenu();
+extern UserSession user;
 
-private:
-	UserSession user;
-	bool ShowMenuForJockey();
-	bool ShowMenuForOwner();
-	bool ShowMenuForAdmin();
-	void InsertForAdmin();
-	void InsertForOwner();
-	void UpdateForOwner();
-	void SelectForJockey();
-	void SelectForOwner();
-	void SelectForAdmin();
-	void PrintInfoAboutBestJockey();
-	void PrintInfoAboutAllRaces();
-	void PrintHorseInfo(Horse horce);
-	void PrintJockeyInfo(Jockey jockey, bool nextline);
-	void PrintRaceInfo(RaceRecord race);
-	void GetInfoAndUpdateJockey(int jockeyId);
-	void GetInfoAndAddJockey();
-	void GetInfoAndUpdateOwner(int ownerId);
-	void GetInfoAndAddOwner();
-	void GetInfoAndUpdateRace(int raceId);
-	void GetInfoAndAddRace();
-	void GetInfoAndAddRaceRecord();
-	void GetInfoAndUpdateHorse(int horseId);
-	void GetInfoAndAddHorse();
-};
+bool ShowMenu();
+bool ShowMenuForJockey();
+bool ShowMenuForOwner();
+bool ShowMenuForAdmin();
+void InsertForAdmin();
+void InsertForOwner();
+void UpdateForOwner();
+void SelectForJockey();
+void SelectForOwner();
+void SelectForAdmin();
+void PrintInfoAboutBestJockey();
+void PrintInfoAboutAllRaces();
+void PrintHorseInfo(Horse horce);
+void PrintJockeyInfo(Jockey jockey, bool nextline);
+void PrintRaceInfo(RaceRecord race);
+void GetInfoAndUpdateJockey(int jockeyId);
+void GetInfoAndAddJockey();
+void GetInfoAndUpdateOwner(int ownerId);
+void GetInfoAndAddOwner();
+void GetInfoAndUpdateRace(int raceId);
+void GetInfoAndAddRace();
+void GetInfoAndAddRaceRecord();
+void GetInfoAndUpdateHorse(int horseId);
+void GetInfoAndAddHorse();
 
 #endif
